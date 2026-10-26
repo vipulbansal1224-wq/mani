@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
 import { YoutubeIcon } from "@/components/Icons";
-import { Play, Eye, Clock, ExternalLink, Flame } from "lucide-react";
+import { Play, Eye, Clock, ExternalLink, Flame, Sparkles } from "lucide-react";
 
 interface YouTubeSectionProps {
   onOpenVideo: (videoId: string, title: string) => void;
@@ -15,8 +15,8 @@ export default function YouTubeSection({ onOpenVideo }: YouTubeSectionProps) {
 
   const categories = [
     { key: "all", label: "All Videos" },
-    { key: "tv-bts", label: "TV Serials & BTS" },
-    { key: "podcast", label: "Podcasts & Spiritual" },
+    { key: "music", label: "Music & Songs" },
+    { key: "interview", label: "Interviews & PR" },
     { key: "comedy", label: "Comedy & Skits" },
     { key: "vlog", label: "Travel & Vlogs" }
   ];
@@ -29,32 +29,44 @@ export default function YouTubeSection({ onOpenVideo }: YouTubeSectionProps) {
   return (
     <section id="youtube" className="relative py-24 bg-[#090a10] border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Channel Banner Callout Card */}
-        <div className="relative rounded-3xl overflow-hidden glass-panel border border-red-500/20 p-6 sm:p-10 mb-16 shadow-2xl">
-          <div className="absolute top-0 right-0 ambient-glow-red opacity-30"></div>
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-5">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-red-600 via-red-500 to-amber-500 p-1 shadow-xl shadow-red-500/30 flex-shrink-0">
-                <div className="w-full h-full bg-[#0a0b12] rounded-xl flex items-center justify-center">
-                  <YoutubeIcon className="w-10 h-10 text-red-500" />
-                </div>
+        {/* Real YouTube Channel Cover Banner Showcase */}
+        <div className="relative rounded-3xl overflow-hidden glass-panel border border-red-500/20 mb-16 shadow-2xl">
+          {/* Cover banner background */}
+          <div className="relative h-44 sm:h-64 w-full overflow-hidden bg-black">
+            <img
+              src={profile.bannerImage}
+              alt="Mani Sandhu Media House Official YouTube Banner"
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#090a10] via-black/30 to-transparent"></div>
+          </div>
+
+          {/* Channel Info Row */}
+          <div className="p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative -mt-16 sm:-mt-20 z-10">
+            <div className="flex flex-col sm:flex-row items-center sm:items-end text-center sm:text-left gap-5">
+              {/* Profile Avatar */}
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl p-1 bg-gradient-to-tr from-red-600 via-amber-500 to-yellow-300 shadow-2xl flex-shrink-0 overflow-hidden bg-black">
+                <img
+                  src={profile.profileImage}
+                  alt="Mani Sandhu Channel Avatar"
+                  className="w-full h-full object-cover rounded-xl"
+                />
               </div>
+
               <div>
                 <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
-                  <h3 className="text-2xl sm:text-3xl font-black text-white">Mani Sandhu Official</h3>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 border border-red-500/30 font-semibold">
+                  <h3 className="text-2xl sm:text-3xl font-black text-white">Mani Sandhu Media House</h3>
+                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-red-500/20 text-red-400 border border-red-500/30 font-semibold">
                     @ManiSandhuOfficial786
                   </span>
                 </div>
-                <p className="text-sm text-gray-300 max-w-xl">
-                  Official YouTube hub featuring TV serial BTS (Star Plus &amp; Colors TV), studio podcasts with spiritual scholars, hilarious comedy sketches, and vlogs.
+                <p className="text-xs sm:text-sm text-gray-300 max-w-xl">
+                  Official YouTube channel for Punjabi songs, comedy skits, artist interviews, and media promotions in Ludhiana, Punjab.
                 </p>
-                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 mt-3 text-xs text-gray-400 font-medium">
-                  <span className="text-amber-400 font-bold">500,000+ Total Views</span>
+                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 mt-2 text-xs text-amber-400 font-semibold">
+                  <span>Contact for Interviews: 9872999854</span>
                   <span>•</span>
-                  <span>120+ Uploads</span>
-                  <span>•</span>
-                  <span>HD 4K Content</span>
+                  <span>Promotions: 9478839486</span>
                 </div>
               </div>
             </div>
@@ -66,7 +78,7 @@ export default function YouTubeSection({ onOpenVideo }: YouTubeSectionProps) {
               className="flex items-center gap-2.5 px-6 py-3.5 rounded-full font-bold text-sm bg-red-600 hover:bg-red-500 text-white shadow-xl shadow-red-600/30 transition-all hover:scale-105 active:scale-95 shrink-0"
             >
               <YoutubeIcon className="w-5 h-5" />
-              <span>Subscribe on YouTube</span>
+              <span>Subscribe to Channel</span>
             </a>
           </div>
         </div>
@@ -76,10 +88,10 @@ export default function YouTubeSection({ onOpenVideo }: YouTubeSectionProps) {
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold uppercase tracking-wider mb-2">
               <Flame className="w-3.5 h-3.5" />
-              <span>Channel Highlights</span>
+              <span>Featured Videos &amp; Tracks</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight uppercase">
-              Trending <span className="text-gold-gradient">Videos &amp; Episodes</span>
+              Channel <span className="text-gold-gradient">Highlights</span>
             </h2>
           </div>
 
@@ -102,14 +114,14 @@ export default function YouTubeSection({ onOpenVideo }: YouTubeSectionProps) {
         </div>
 
         {/* Video Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredVideos.map((vid) => (
             <div
               key={vid.id}
               className="glass-card rounded-2xl overflow-hidden border border-white/5 hover:border-amber-500/40 flex flex-col group"
             >
               {/* Thumbnail Container */}
-              <div className="relative aspect-video overflow-hidden bg-zinc-900">
+              <div className="relative aspect-video overflow-hidden bg-black">
                 <img
                   src={vid.thumbnail}
                   alt={vid.title}
@@ -130,7 +142,7 @@ export default function YouTubeSection({ onOpenVideo }: YouTubeSectionProps) {
 
                 {/* Play Button Overlay */}
                 <button
-                  onClick={() => onOpenVideo(vid.youtubeId || "sayonee-bts", vid.title)}
+                  onClick={() => onOpenVideo(vid.youtubeId || "video", vid.title)}
                   className="absolute inset-0 m-auto w-12 h-12 rounded-full bg-amber-500/90 hover:bg-amber-400 text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100 shadow-xl cursor-pointer"
                   aria-label="Play video"
                 >
@@ -139,7 +151,7 @@ export default function YouTubeSection({ onOpenVideo }: YouTubeSectionProps) {
               </div>
 
               {/* Video Info */}
-              <div className="p-4 flex-1 flex flex-col justify-between">
+              <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
                   <h4 className="text-sm font-bold text-white line-clamp-2 mb-2 group-hover:text-amber-400 transition-colors">
                     {vid.title}
@@ -150,10 +162,7 @@ export default function YouTubeSection({ onOpenVideo }: YouTubeSectionProps) {
                 </div>
 
                 <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-1 text-gray-400">
-                    <Eye className="w-3 h-3 text-amber-400" />
-                    <span>{vid.views}</span>
-                  </div>
+                  <span className="text-amber-400 font-medium">{vid.views}</span>
 
                   <a
                     href={vid.youtubeUrl}
@@ -161,7 +170,7 @@ export default function YouTubeSection({ onOpenVideo }: YouTubeSectionProps) {
                     rel="noopener noreferrer"
                     className="flex items-center gap-1 text-red-400 hover:text-red-300 font-semibold"
                   >
-                    <span>YouTube</span>
+                    <span>Watch on YouTube</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
@@ -170,16 +179,16 @@ export default function YouTubeSection({ onOpenVideo }: YouTubeSectionProps) {
           ))}
         </div>
 
-        {/* View all on YouTube link button */}
+        {/* View on YouTube */}
         <div className="mt-12 text-center">
           <a
             href={profile.socials.youtube}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-bold bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-amber-500/30 transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-amber-500/30 transition-all"
           >
             <YoutubeIcon className="w-4 h-4 text-red-500" />
-            <span>Explore Entire Library on YouTube (@ManiSandhuOfficial786)</span>
+            <span>Visit @ManiSandhuOfficial786 on YouTube</span>
           </a>
         </div>
       </div>

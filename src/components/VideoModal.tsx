@@ -32,7 +32,7 @@ export default function VideoModal({ isOpen, onClose, videoId, title }: VideoMod
             </div>
             <div>
               <h3 className="text-sm sm:text-base font-bold text-white line-clamp-1">{title}</h3>
-              <p className="text-xs text-amber-400">Mani Sandhu Official Video Feature</p>
+              <p className="text-xs text-amber-400">Mani Sandhu Media House Official</p>
             </div>
           </div>
 
@@ -45,16 +45,13 @@ export default function VideoModal({ isOpen, onClose, videoId, title }: VideoMod
           </button>
         </div>
 
-        {/* Video Player Display */}
+        {/* Video Player Display with Real YouTube Cover Art */}
         <div className="relative aspect-video rounded-2xl overflow-hidden bg-black flex flex-col items-center justify-center border border-white/10">
-          {/* Stylized Player Banner */}
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-40"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=1200&q=80')"
-            }}
-          ></div>
+          <img
+            src="/mani-sandhu-banner.jpg"
+            alt="Mani Sandhu Video Cover"
+            className="absolute inset-0 w-full h-full object-cover opacity-40"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30"></div>
 
           <div className="relative z-10 text-center max-w-lg px-4 flex flex-col items-center">
@@ -63,7 +60,7 @@ export default function VideoModal({ isOpen, onClose, videoId, title }: VideoMod
             </div>
             <h4 className="text-xl sm:text-2xl font-black text-white mb-2">{title}</h4>
             <p className="text-xs sm:text-sm text-gray-300 mb-6 leading-relaxed">
-              Watch this complete episode and showreel directly on the official YouTube channel @ManiSandhuOfficial786.
+              Watch this complete video and more content on the official YouTube channel @ManiSandhuOfficial786.
             </p>
             <a
               href={PORTFOLIO_DATA.profile.socials.youtube}
@@ -72,7 +69,7 @@ export default function VideoModal({ isOpen, onClose, videoId, title }: VideoMod
               className="flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold bg-red-600 hover:bg-red-500 text-white shadow-lg shadow-red-600/30 transition-all hover:scale-105"
             >
               <YoutubeIcon className="w-4 h-4" />
-              <span>Watch Video on YouTube Channel</span>
+              <span>Watch on YouTube Channel</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
@@ -81,7 +78,7 @@ export default function VideoModal({ isOpen, onClose, videoId, title }: VideoMod
         {/* Footer info */}
         <div className="pt-4 mt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-2">
           <span>Official Channel: youtube.com/@ManiSandhuOfficial786</span>
-          <span className="text-amber-400">Star Plus • Colors TV • Mani Sandhu Media House</span>
+          <span className="text-amber-400">Mani Sandhu Media House • Ludhiana</span>
         </div>
       </div>
     </div>

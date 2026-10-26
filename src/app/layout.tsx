@@ -13,20 +13,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mani Sandhu | Actor • TV Artist • Host • Mani Sandhu Media House",
+  title: "Mani Sandhu | Singer • Actor • Vlogger • Mani Sandhu Media House",
   description:
-    "Official Portfolio of Mani Sandhu. Featuring Star Plus 'Sayonee', Colors TV 'Tu Juliet Jatt Di', Punjabi comedy skits, and exclusive celebrity & spiritual talk shows. Ludhiana & Mumbai.",
+    "Official website of Mani Sandhu. Singer of 'Broken Heart', Actor, Model, Vlogger, and Host at Mani Sandhu Media House, Ludhiana. YouTube @ManiSandhuOfficial786.",
   keywords: [
     "Mani Sandhu",
     "ManiSandhuOfficial786",
     "Mani Sandhu Media House",
-    "Sayonee Star Plus",
-    "Tu Juliet Jatt Di Colors TV",
+    "Broken Heart Mani Sandhu",
+    "Mani Sandhu Singer",
     "Punjabi Actor",
-    "Ludhiana Actor",
-    "Ludhiana Media Studio",
-    "Punjabi Podcast Host",
-    "Bhai Varinder Singh Nirman Mani Sandhu"
+    "Ludhiana Vlogger",
+    "Punjabi Comedy Skits",
+    "Media Promotions Ludhiana"
   ],
   authors: [{ name: "Mani Sandhu" }],
   creator: "Mani Sandhu",
@@ -34,10 +33,18 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://youtube.com/@ManiSandhuOfficial786",
-    title: "Mani Sandhu | Official Actor & Media Portfolio",
+    title: "Mani Sandhu | Singer • Creator • Media House",
     description:
-      "Explore the official acting projects, TV serials (Star Plus, Colors TV), podcast episodes, and media production from Mani Sandhu Media House.",
-    siteName: "Mani Sandhu Portfolio",
+      "Explore official songs like 'Broken Heart', YouTube videos, comedy skits, and media promotions from Mani Sandhu Media House.",
+    siteName: "Mani Sandhu Official",
+    images: [
+      {
+        url: "/mani-sandhu-profile.jpg",
+        width: 900,
+        height: 900,
+        alt: "Mani Sandhu Official Profile Photo",
+      },
+    ],
   },
   icons: {
     icon: "/favicon.ico",

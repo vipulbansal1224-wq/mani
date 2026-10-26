@@ -1,107 +1,70 @@
-# Mani Sandhu — Official Portfolio & Media House Website
+# Mani Sandhu — Official Website & Media House
 
-A celebrity-grade, modern Next.js portfolio website for **Mani Sandhu** (Actor, TV Serial Artist, Anchor & Host, Founder of **Mani Sandhu Media House**, Ludhiana, Punjab).
+Official Next.js website for **Mani Sandhu** (Singer, Actor, Model, Vlogger, Media Promoter & Host at **Mani Sandhu Media House**, Ludhiana, Punjab).
 
-Built directly from public media archives and official YouTube channel:
+Directly connected with his official online handles and media:
 - **YouTube Channel:** [@ManiSandhuOfficial786](https://www.youtube.com/@ManiSandhuOfficial786)
-- **Instagram:** [@manisandhu_official](https://www.instagram.com/manisandhu_official)
-- **Headquarters & Studio:** Ludhiana, Punjab, India (Active in Punjab, Mumbai Film City & International shoots)
+- **Instagram:** [@manisandhu_official](https://www.instagram.com/manisandhu_official?igsh=MW9oM3Foem02OTFhbQ==)
+- **Official Punjabi Song:** *"Broken Heart"* on [Spotify](https://open.spotify.com/track/1YQCvArUgAu3rtTwkiyOtA?si=SwSD-UM4QYG9Hh0JYoUtpg), [JioSaavn](https://www.saavn.com/s/song/punjabi/broken-heart/broken-heart/HDcuWQZpYwA), and Wynk Music.
+- **Contact for Interviews & Promotions:** `+91 98729 99854` / `+91 94788 39486`
 
 ---
 
-## 🌟 Highlights & Features
+## 🌟 Key Features
 
-1. **Cinematic Hero & Showreel Section:**
-   - Featuring headline badges for **Star Plus** & **Colors TV**.
-   - Direct showreel launcher with custom video modal.
-   - Quick stats ticker: 500K+ Views, 120+ Uploads, National TV Telecasts.
-   - 1-click WhatsApp and YouTube channel buttons.
+1. **Original Visuals from YouTube:**
+   - Features the real **YouTube Cover Page Banner** (`/public/mani-sandhu-banner.jpg`) as the hero backdrop and showcase banner.
+   - Features Mani Sandhu's authentic **YouTube Profile Picture** (`/public/mani-sandhu-profile.jpg`) across the navigation, hero, and about sections.
 
-2. **Filmography & Screen Work:**
-   - **Star Plus: *Sayonee*** (Featuring Rashami Desai, Jahnvi Soni & ensemble cast).
-   - **Colors TV: *Tu Juliet Jatt Di*** (Featuring Nawab, Heer & on-set BTS).
-   - **Mani Sandhu Spotlight** (Talk show & celebrity podcast).
-   - **Punjabi Comedy & Skit Series** (*Vichole Ne Khaade Chhitar*, *Mujhe Pata Mai Haar Gya Hu*).
+2. **Official Single — "Broken Heart":**
+   - Direct streaming buttons for Spotify, JioSaavn, and Wynk Music.
 
-3. **Curated YouTube Showcase:**
-   - Interactive category filters: *All Videos, TV Serials & BTS, Podcasts & Spiritual, Comedy Skits, Travel & Vlogs*.
-   - Direct subscribe callout for `@ManiSandhuOfficial786`.
+3. **Curated YouTube Highlights (@ManiSandhuOfficial786):**
+   - Categories for Music & Songs, Artist Interviews, Comedy Skits, and Travel Vlogs.
+   - Direct YouTube subscribe callout.
 
-4. **Mani Sandhu Media House (Ludhiana Studio):**
-   - 4K Multi-Camera Studio, Podcast Recording Soundstage, Music Video Direction, Artist PR & Brand Endorsements.
+4. **Media Promotions & Artist PR:**
+   - Dedicated service booking for upcoming Punjabi singers, models, and local brands.
+   - Direct hotline buttons: `+91 98729 99854` and `+91 94788 39486`.
 
-5. **Interactive Booking & Casting Desk:**
-   - Booking form for TV casting, podcast guest slots, studio rental, and brand endorsements.
-   - Direct hotlines: `+91 98729 99854` and `+91 94788 39486`.
-   - Direct WhatsApp integration with pre-filled message.
-
-6. **Production Stills Lightbox Gallery & Endorsements:**
-   - On-set photos, studio shots, London vlogs, and quotes from collaborators including Bhai Varinder Singh Nirman.
+5. **Interactive Inquiry & Promotion Form:**
+   - Clean booking form for song collaborations, artist interviews, and social media PR.
+   - 1-click WhatsApp messaging.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Framework:** [Next.js](https://nextjs.org/) (App Router, Turbopack)
-- **UI & Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Language:** TypeScript
-- **Icons:** Custom SVG Brand Icons + Lucide React
-- **Theme:** Cinematic Dark Obsidian with Warm Gold & Amber Accents
+- **Framework:** Next.js 16 (App Router, Turbopack)
+- **Library:** React 19 + TypeScript
+- **Styling:** Tailwind CSS v4
+- **Icons:** Custom SVG Icons + Lucide React
 
 ---
 
-## 🚀 Getting Started Locally
-
-Open your terminal in this directory:
+## 🚀 Run Locally
 
 ```bash
-# 1. Install dependencies (if not already installed)
-npm install
-
-# 2. Run the development server
+cd C:\Users\adfmin\Downloads\manisandhu
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-To create an optimized production build:
-
+To build:
 ```bash
 npm run build
-npm run start
 ```
 
 ---
 
-## 📦 How to Push to GitHub / Git
-
-Follow these commands to push this project to your GitHub repository:
+## 📦 Push to GitHub
 
 ```bash
-# 1. Initialize git repository (if not already initialized)
-git init -b main
-
-# 2. Add all files
 git add .
-
-# 3. Commit changes
-git commit -m "Initial commit: Mani Sandhu Official Portfolio Website"
-
-# 4. Link your GitHub remote repository
-git remote add origin https://github.com/<YOUR-USERNAME>/<YOUR-REPO-NAME>.git
-
-# 5. Push code to main branch
-git push -u origin main
+git commit -m "Update: authentic Mani Sandhu YouTube photo, banner, and songs"
+git push origin main
 ```
-
----
-
-## 🌐 Deploy to Vercel
-
-1. Push your repository to GitHub.
-2. Go to [Vercel](https://vercel.com) and click **"Add New Project"**.
-3. Select your GitHub repository (`manisandhu`).
-4. Click **Deploy**. Vercel will automatically build and host the Next.js portfolio with a live public URL and custom domain support!
 
 ---
 

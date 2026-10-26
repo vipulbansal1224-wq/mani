@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { PORTFOLIO_DATA, GalleryItem } from "@/data/portfolio-data";
-import { Camera, Image as ImageIcon, X, Maximize2, Sparkles } from "lucide-react";
+import { Camera, X, Maximize2, Sparkles } from "lucide-react";
 
 export default function GallerySection() {
   const { gallery } = PORTFOLIO_DATA;
@@ -10,11 +10,10 @@ export default function GallerySection() {
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryItem | null>(null);
 
   const filters = [
-    { key: "all", label: "All Stills" },
-    { key: "on-set", label: "Television Sets" },
-    { key: "studio", label: "Media Studio" },
-    { key: "travel", label: "London & Travel" },
-    { key: "events", label: "Events & Talks" },
+    { key: "all", label: "All Photos" },
+    { key: "youtube-cover", label: "YouTube Cover" },
+    { key: "profile", label: "Profile Stills" },
+    { key: "shoots", label: "Media House" },
   ];
 
   const filteredPhotos =
@@ -30,10 +29,10 @@ export default function GallerySection() {
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3">
               <Camera className="w-3.5 h-3.5" />
-              <span>Visual Moments &amp; Stills</span>
+              <span>Official Media Photos</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase">
-              Production <span className="text-gold-gradient">Gallery</span>
+              Photo <span className="text-gold-gradient">Gallery</span>
             </h2>
           </div>
 
@@ -56,12 +55,12 @@ export default function GallerySection() {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
           {filteredPhotos.map((item) => (
             <div
               key={item.id}
               onClick={() => setSelectedPhoto(item)}
-              className="group relative rounded-2xl overflow-hidden glass-card border border-white/10 aspect-4/3 cursor-pointer"
+              className="group relative rounded-2xl overflow-hidden glass-card border border-white/10 aspect-16/9 cursor-pointer bg-black"
             >
               <img
                 src={item.imageUrl}

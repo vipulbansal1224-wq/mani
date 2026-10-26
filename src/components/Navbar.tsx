@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
 import { YoutubeIcon, InstagramIcon } from "@/components/Icons";
-import { Phone, Menu, X, Sparkles } from "lucide-react";
+import { Phone, Menu, X, Music, Sparkles } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,11 +19,11 @@ export default function Navbar() {
 
   const navLinks = [
     { label: "About", href: "#about" },
-    { label: "Television & Films", href: "#projects" },
-    { label: "YouTube & BTS", href: "#youtube" },
-    { label: "Media House Studio", href: "#media-house" },
-    { label: "Gallery", href: "#gallery" },
-    { label: "Contact", href: "#contact" },
+    { label: "Music & Songs", href: "#work" },
+    { label: "YouTube Videos", href: "#youtube" },
+    { label: "Media House", href: "#media-house" },
+    { label: "Photos", href: "#gallery" },
+    { label: "Contact & Promotions", href: "#contact" },
   ];
 
   return (
@@ -36,19 +36,21 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Brand Logo */}
+          {/* Brand Logo with Real Profile Image */}
           <a href="#" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-500 via-amber-400 to-yellow-200 p-[2px] shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-[#090a0f] rounded-full flex items-center justify-center">
-                <span className="text-amber-400 font-extrabold text-sm tracking-wider">MS</span>
-              </div>
+            <div className="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-amber-500 via-amber-400 to-yellow-200 shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform overflow-hidden">
+              <img
+                src={PORTFOLIO_DATA.profile.profileImage}
+                alt="Mani Sandhu"
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-extrabold text-lg sm:text-xl tracking-wide text-white group-hover:text-amber-400 transition-colors">
                   MANI SANDHU
                 </span>
-                <span className="text-xs px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400 border border-amber-500/30 font-medium hidden sm:inline-block">
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400 border border-amber-500/30 font-semibold hidden sm:inline-block">
                   OFFICIAL
                 </span>
               </div>
@@ -74,6 +76,16 @@ export default function Navbar() {
           {/* Socials & CTA */}
           <div className="hidden sm:flex items-center gap-3">
             <a
+              href={PORTFOLIO_DATA.profile.socials.spotify}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Spotify Track"
+              className="w-9 h-9 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-all hover:scale-105"
+            >
+              <Music className="w-4 h-4" />
+            </a>
+
+            <a
               href={PORTFOLIO_DATA.profile.socials.youtube}
               target="_blank"
               rel="noopener noreferrer"
@@ -98,7 +110,7 @@ export default function Navbar() {
               className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black shadow-lg shadow-amber-500/25 transition-all hover:scale-105"
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Bookings &amp; PR</span>
+              <span>Contact / PR</span>
             </a>
           </div>
 
@@ -155,7 +167,7 @@ export default function Navbar() {
                 className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-black text-sm font-bold shadow-lg shadow-amber-500/30"
               >
                 <Phone className="w-4 h-4" />
-                Contact &amp; Casting
+                Call / WhatsApp Mani
               </a>
             </div>
           </div>

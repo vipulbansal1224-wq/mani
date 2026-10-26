@@ -3,7 +3,7 @@
 import React from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
 import { YoutubeIcon, InstagramIcon } from "@/components/Icons";
-import { Phone, Mail, MapPin, ArrowUp } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowUp, Music } from "lucide-react";
 
 export default function Footer() {
   const { profile } = PORTFOLIO_DATA;
@@ -19,10 +19,12 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-500 to-amber-300 p-[2px]">
-                <div className="w-full h-full bg-[#07080c] rounded-full flex items-center justify-center font-black text-amber-400 text-sm">
-                  MS
-                </div>
+              <div className="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-amber-500 to-amber-300 overflow-hidden">
+                <img
+                  src={profile.profileImage}
+                  alt="Mani Sandhu"
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
               <div>
                 <span className="font-extrabold text-lg text-white tracking-wide">
@@ -35,10 +37,19 @@ export default function Footer() {
             </div>
 
             <p className="text-gray-400 text-xs leading-relaxed max-w-sm">
-              Actor, television artist, podcast host, and founder of Mani Sandhu Media House. Known for Star Plus 'Sayonee', Colors TV 'Tu Juliet Jatt Di', spiritual interviews, and viral digital skits.
+              Independent Punjabi Singer ('Broken Heart'), Model, Actor, Vlogger, and Host. Channel: Mani Sandhu Media House (@ManiSandhuOfficial786).
             </p>
 
             <div className="flex items-center gap-3 pt-2">
+              <a
+                href={profile.socials.spotify}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-xl bg-emerald-600/10 hover:bg-emerald-600 border border-emerald-500/20 text-emerald-400 hover:text-white flex items-center justify-center transition-all"
+                aria-label="Spotify"
+              >
+                <Music className="w-4 h-4" />
+              </a>
               <a
                 href={profile.socials.youtube}
                 target="_blank"
@@ -70,28 +81,28 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#projects" className="hover:text-amber-400 transition-colors">
-                  Television Serials &amp; Films
+                <a href="#work" className="hover:text-amber-400 transition-colors">
+                  Music &amp; Songs ('Broken Heart')
                 </a>
               </li>
               <li>
                 <a href="#youtube" className="hover:text-amber-400 transition-colors">
-                  YouTube Videos &amp; BTS
+                  YouTube Videos &amp; Comedy Skits
                 </a>
               </li>
               <li>
                 <a href="#media-house" className="hover:text-amber-400 transition-colors">
-                  Mani Sandhu Media House (Ludhiana)
+                  Media House Promotions
                 </a>
               </li>
               <li>
                 <a href="#gallery" className="hover:text-amber-400 transition-colors">
-                  Production Stills &amp; Gallery
+                  Official Photos
                 </a>
               </li>
               <li>
                 <a href="#contact" className="hover:text-amber-400 transition-colors">
-                  Contact &amp; Casting Inquiries
+                  Contact &amp; Interviews
                 </a>
               </li>
             </ul>
@@ -99,15 +110,19 @@ export default function Footer() {
 
           {/* Contact lines */}
           <div className="lg:col-span-4 space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">Contact &amp; Studio</h4>
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider">Contact Numbers</h4>
             <div className="space-y-2 text-xs">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>Ludhiana, Punjab, India (Active in Punjab &amp; Mumbai)</span>
+                <span>Ludhiana, Punjab, India</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>+91 98729 99854 / +91 94788 39486</span>
+                <span>Interviews: +91 98729 99854</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span>Promotions: +91 94788 39486</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-amber-400 shrink-0" />
@@ -128,7 +143,14 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-4">
-            <span className="text-amber-400 font-medium">Ready for Git &amp; Vercel Deployment</span>
+            <a
+              href="https://github.com/vipulbansal1224-wq/mani"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-amber-400 hover:text-amber-300 font-medium transition-colors"
+            >
+              GitHub: vipulbansal1224-wq/mani
+            </a>
             <button
               onClick={scrollToTop}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 transition-all cursor-pointer"
