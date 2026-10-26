@@ -1,28 +1,29 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const playfair = Playfair_Display({
+  variable: "--font-serif",
   subsets: ["latin"],
+  weight: ["400", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
-  title: "Mani Sandhu | Singer • Actor • Vlogger • Mani Sandhu Media House",
+  title: "Mani Sandhu | Singer • Creator • Mani Sandhu Media House",
   description:
-    "Official website of Mani Sandhu. Singer of 'Broken Heart', Actor, Model, Vlogger, and Host at Mani Sandhu Media House, Ludhiana. YouTube @ManiSandhuOfficial786.",
+    "Official portfolio of Mani Sandhu. Singer of 'Broken Heart', Vlogger, Model, Actor, and Host at Mani Sandhu Media House, Ludhiana. YouTube: @ManiSandhuOfficial786.",
   keywords: [
     "Mani Sandhu",
     "ManiSandhuOfficial786",
     "Mani Sandhu Media House",
     "Broken Heart Mani Sandhu",
-    "Mani Sandhu Singer",
-    "Punjabi Actor",
+    "Punjabi Singer",
     "Ludhiana Vlogger",
     "Punjabi Comedy Skits",
     "Media Promotions Ludhiana"
@@ -33,16 +34,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://youtube.com/@ManiSandhuOfficial786",
-    title: "Mani Sandhu | Singer • Creator • Media House",
+    title: "Mani Sandhu | Official Artist Portfolio",
     description:
-      "Explore official songs like 'Broken Heart', YouTube videos, comedy skits, and media promotions from Mani Sandhu Media House.",
+      "Explore songs like 'Broken Heart', YouTube videos, comedy skits, and media promotions from Mani Sandhu Media House.",
     siteName: "Mani Sandhu Official",
     images: [
       {
         url: "/mani-sandhu-profile.jpg",
         width: 900,
         height: 900,
-        alt: "Mani Sandhu Official Profile Photo",
+        alt: "Mani Sandhu Official Photo",
       },
     ],
   },
@@ -57,8 +58,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth dark`}>
-      <body className="min-h-screen bg-[#07080c] text-gray-100 antialiased selection:bg-amber-500/30 selection:text-amber-200">
+    <html lang="en" className={`${jakarta.variable} ${playfair.variable} scroll-smooth dark`}>
+      <body className="min-h-screen bg-[#0b0c10] text-[#e5e7eb] font-sans antialiased selection:bg-[#d4af37]/30 selection:text-[#fef3c7]">
         {children}
       </body>
     </html>

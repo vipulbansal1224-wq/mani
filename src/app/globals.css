@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #090a0f;
+  --background: #0b0c10;
   --foreground: #f3f4f6;
-  --card-bg: rgba(18, 20, 29, 0.7);
-  --card-border: rgba(255, 255, 255, 0.08);
-  --gold-primary: #f59e0b;
-  --gold-secondary: #d97706;
+  --champagne: #d4af37;
+  --champagne-light: #f3e5ab;
+  --charcoal-light: #161822;
+  --border-subtle: rgba(255, 255, 255, 0.08);
 }
 
 html {
@@ -15,82 +15,64 @@ html {
 }
 
 body {
-  background-color: #07080c;
-  color: #f3f4f6;
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #0b0c10;
+  color: #e5e7eb;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
 }
 
-/* Glassmorphism helpers */
-.glass-panel {
-  background: rgba(15, 17, 26, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Editorial Serif & Typography classes */
+.font-serif {
+  font-family: var(--font-serif), Georgia, serif;
 }
 
-.glass-card {
-  background: linear-gradient(135deg, rgba(26, 29, 43, 0.6) 0%, rgba(15, 17, 26, 0.8) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+.font-sans {
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* Subtle editorial lines & dividers */
+.editorial-border {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.editorial-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+}
+
+/* Clean cards without gaudy glows */
+.hostinger-card {
+  background: #111319;
   border: 1px solid rgba(255, 255, 255, 0.07);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-card:hover {
-  border-color: rgba(245, 158, 11, 0.3);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(245, 158, 11, 0.15);
+.hostinger-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
 }
 
-/* Ambient glow accents */
-.ambient-glow-gold {
-  position: absolute;
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0) 70%);
-  filter: blur(50px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.ambient-glow-red {
-  position: absolute;
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(229, 9, 20, 0.12) 0%, rgba(229, 9, 20, 0) 70%);
-  filter: blur(50px);
-  pointer-events: none;
-  z-index: 0;
+/* Champagne text gradient */
+.text-champagne {
+  background: linear-gradient(135deg, #fef3c7 0%, #d4af37 60%, #b8912e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090a0f;
+  background: #0b0c10;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #232738;
-  border-radius: 4px;
+  background: #232733;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #f59e0b;
-}
-
-/* Text gold gradient */
-.text-gold-gradient {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-silver-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #d1d5db 50%, #9ca3af 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: #d4af37;
 }

@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import YouTubeSection from "@/components/YouTubeSection";
-import MediaHouseSection from "@/components/MediaHouseSection";
-import GallerySection from "@/components/GallerySection";
+import MusicSection from "@/components/MusicSection";
+import WorksSection from "@/components/WorksSection";
+import ServicesList from "@/components/ServicesList";
+import ChannelPanorama from "@/components/ChannelPanorama";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import VideoModal from "@/components/VideoModal";
@@ -36,35 +36,35 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#07080c] text-gray-100 flex flex-col relative selection:bg-amber-500/30 selection:text-amber-200">
-      {/* Sticky Glass Navbar with Original Photo */}
+    <main className="min-h-screen bg-[#0b0c10] text-[#e5e7eb] flex flex-col relative selection:bg-[#d4af37]/30 selection:text-[#fef3c7]">
+      {/* Editorial Minimalist Navbar */}
       <Navbar />
 
-      {/* Hero Section with YouTube Cover Backdrop & Profile Photo */}
+      {/* Hostinger Asymmetric Split Hero */}
       <Hero onOpenVideo={handleOpenVideo} />
 
-      {/* About Section with Real Channel Details */}
+      {/* About The Artist (01) */}
       <AboutSection />
 
-      {/* Creative Work: Songs, Skits, Interviews */}
-      <ProjectsSection onOpenVideo={handleOpenVideo} />
+      {/* Featured Music Release: "Broken Heart" (02) */}
+      <MusicSection />
 
-      {/* YouTube Highlights & Real Banner (@ManiSandhuOfficial786) */}
-      <YouTubeSection onOpenVideo={handleOpenVideo} />
+      {/* Selected Works & Video Catalogue (03) */}
+      <WorksSection onOpenVideo={handleOpenVideo} />
 
-      {/* Mani Sandhu Media House (Ludhiana Promotions & PR) */}
-      <MediaHouseSection />
+      {/* Numbered Editorial Services (04) */}
+      <ServicesList />
 
-      {/* Official Photos Gallery */}
-      <GallerySection />
+      {/* YouTube Cover Banner Panorama (05) */}
+      <ChannelPanorama />
 
-      {/* Interactive Contact & Promotion Booking */}
+      {/* Contact & Promotion Desk (06) */}
       <ContactSection />
 
-      {/* Footer */}
+      {/* Editorial Typography Footer */}
       <Footer />
 
-      {/* Video Preview Modal */}
+      {/* Reusable Video Preview Modal */}
       <VideoModal
         isOpen={videoModal.isOpen}
         onClose={handleCloseVideo}

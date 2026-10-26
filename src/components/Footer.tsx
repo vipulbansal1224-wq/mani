@@ -2,8 +2,8 @@
 
 import React from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
-import { YoutubeIcon, InstagramIcon } from "@/components/Icons";
-import { Phone, Mail, MapPin, ArrowUp, Music } from "lucide-react";
+import { YoutubeIcon, InstagramIcon, WhatsAppIcon } from "@/components/Icons";
+import { ArrowUp, Music, Phone, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
   const { profile } = PORTFOLIO_DATA;
@@ -13,13 +13,21 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#050608] text-gray-400 text-xs border-t border-white/5 pt-16 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/5">
-          {/* Brand Info */}
+    <footer className="bg-[#08090d] text-gray-400 pt-20 pb-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        {/* Massive Typographic Wordmark (Hostinger Minimalist Luxury Style) */}
+        <div className="pb-16 border-b border-white/5">
+          <div className="text-4xl sm:text-7xl lg:text-9xl font-serif font-black tracking-tight text-white/10 select-none text-center lg:text-left leading-none uppercase">
+            Mani Sandhu
+          </div>
+        </div>
+
+        {/* Links & Details Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 py-12 border-b border-white/5">
+          {/* Col 1: Bio */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-amber-500 to-amber-300 overflow-hidden">
+              <div className="w-10 h-10 rounded-full overflow-hidden border border-[#d4af37]/40 p-0.5">
                 <img
                   src={profile.profileImage}
                   alt="Mani Sandhu"
@@ -27,17 +35,13 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <span className="font-extrabold text-lg text-white tracking-wide">
-                  MANI SANDHU
-                </span>
-                <span className="block text-[11px] text-amber-400 font-semibold tracking-wider uppercase">
-                  ਮਨੀ ਸੰਧੂ • Media House Ludhiana
-                </span>
+                <div className="font-serif font-bold text-white text-base">Mani Sandhu</div>
+                <div className="text-[10px] uppercase tracking-widest text-[#d4af37]">Media House &bull; Ludhiana</div>
               </div>
             </div>
 
-            <p className="text-gray-400 text-xs leading-relaxed max-w-sm">
-              Independent Punjabi Singer ('Broken Heart'), Model, Actor, Vlogger, and Host. Channel: Mani Sandhu Media House (@ManiSandhuOfficial786).
+            <p className="text-xs text-gray-400 leading-relaxed max-w-sm">
+              Singer of "Broken Heart", content creator, actor, model, vlogger, and media promoter. Operating out of Ludhiana, Punjab.
             </p>
 
             <div className="flex items-center gap-3 pt-2">
@@ -45,115 +49,111 @@ export default function Footer() {
                 href={profile.socials.spotify}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-emerald-600/10 hover:bg-emerald-600 border border-emerald-500/20 text-emerald-400 hover:text-white flex items-center justify-center transition-all"
+                className="w-8 h-8 rounded-full bg-white/5 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-all text-gray-400"
                 aria-label="Spotify"
               >
-                <Music className="w-4 h-4" />
+                <Music className="w-3.5 h-3.5" />
               </a>
               <a
                 href={profile.socials.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-red-600/10 hover:bg-red-600 border border-red-500/20 text-red-500 hover:text-white flex items-center justify-center transition-all"
-                aria-label="YouTube Channel"
+                className="w-8 h-8 rounded-full bg-white/5 hover:bg-red-600 hover:text-white flex items-center justify-center transition-all text-gray-400"
+                aria-label="YouTube"
               >
-                <YoutubeIcon className="w-4 h-4" />
+                <YoutubeIcon className="w-3.5 h-3.5" />
               </a>
               <a
                 href={profile.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-pink-600/10 hover:bg-gradient-to-tr hover:from-amber-500 hover:to-pink-600 border border-pink-500/20 text-pink-400 hover:text-white flex items-center justify-center transition-all"
-                aria-label="Instagram Profile"
+                className="w-8 h-8 rounded-full bg-white/5 hover:bg-pink-600 hover:text-white flex items-center justify-center transition-all text-gray-400"
+                aria-label="Instagram"
               >
-                <InstagramIcon className="w-4 h-4" />
+                <InstagramIcon className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
 
-          {/* Quick Nav */}
+          {/* Col 2: Navigation */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">Quick Navigation</h4>
-            <ul className="space-y-2">
+            <div className="text-xs uppercase font-bold tracking-widest text-white">Navigation</div>
+            <ul className="space-y-2 text-xs">
               <li>
-                <a href="#about" className="hover:text-amber-400 transition-colors">
-                  About Mani Sandhu
+                <a href="#about" className="hover:text-[#d4af37] transition-colors">
+                  About Artist
                 </a>
               </li>
               <li>
-                <a href="#work" className="hover:text-amber-400 transition-colors">
-                  Music &amp; Songs ('Broken Heart')
+                <a href="#music" className="hover:text-[#d4af37] transition-colors">
+                  Single: "Broken Heart"
                 </a>
               </li>
               <li>
-                <a href="#youtube" className="hover:text-amber-400 transition-colors">
-                  YouTube Videos &amp; Comedy Skits
+                <a href="#works" className="hover:text-[#d4af37] transition-colors">
+                  Selected Works &amp; Skits
                 </a>
               </li>
               <li>
-                <a href="#media-house" className="hover:text-amber-400 transition-colors">
+                <a href="#services" className="hover:text-[#d4af37] transition-colors">
                   Media House Promotions
                 </a>
               </li>
               <li>
-                <a href="#gallery" className="hover:text-amber-400 transition-colors">
-                  Official Photos
+                <a href="#channel" className="hover:text-[#d4af37] transition-colors">
+                  YouTube Channel Cover
                 </a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-amber-400 transition-colors">
-                  Contact &amp; Interviews
+                <a href="#contact" className="hover:text-[#d4af37] transition-colors">
+                  Contact &amp; Bookings
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Contact lines */}
+          {/* Col 3: Direct Inquiries */}
           <div className="lg:col-span-4 space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">Contact Numbers</h4>
+            <div className="text-xs uppercase font-bold tracking-widest text-white">Direct Contacts</div>
             <div className="space-y-2 text-xs">
               <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <MapPin className="w-3.5 h-3.5 text-[#d4af37]" />
                 <span>Ludhiana, Punjab, India</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <Phone className="w-3.5 h-3.5 text-[#d4af37]" />
                 <span>Interviews: +91 98729 99854</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <Phone className="w-3.5 h-3.5 text-[#d4af37]" />
                 <span>Promotions: +91 94788 39486</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <Mail className="w-3.5 h-3.5 text-[#d4af37]" />
                 <span>{profile.officialEmail}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <YoutubeIcon className="w-3.5 h-3.5 text-red-500 shrink-0" />
-                <span>youtube.com/@ManiSandhuOfficial786</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-500 text-[11px]">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
           <div>
-            &copy; 2026 Mani Sandhu • Mani Sandhu Media House. All Rights Reserved.
+            &copy; 2026 Mani Sandhu &bull; Mani Sandhu Media House. All Rights Reserved.
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <a
               href="https://github.com/vipulbansal1224-wq/mani"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-amber-400 hover:text-amber-300 font-medium transition-colors"
+              className="text-[#d4af37] hover:underline"
             >
               GitHub: vipulbansal1224-wq/mani
             </a>
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 transition-all cursor-pointer"
+              className="inline-flex items-center gap-1 text-gray-400 hover:text-white transition-colors cursor-pointer"
             >
               <span>Back to Top</span>
               <ArrowUp className="w-3 h-3" />
