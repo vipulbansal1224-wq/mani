@@ -36,7 +36,14 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0b0c10] text-[#e5e7eb] flex flex-col relative selection:bg-[#d4af37]/30 selection:text-[#fef3c7]">
+    <main className="min-h-screen bg-[#07080c] text-[#e5e7eb] flex flex-col relative selection:bg-[#ff2a5f]/40 selection:text-white overflow-hidden">
+      {/* Concert Stage Ambient Lighting Accents */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[#ff2a5f]/10 blur-[140px] animate-stage-glow"></div>
+        <div className="absolute top-[20%] right-[-10%] w-[650px] h-[650px] rounded-full bg-[#f59e0b]/10 blur-[150px] animate-stage-glow" style={{ animationDelay: "3s" }}></div>
+        <div className="absolute top-[60%] left-[-5%] w-[500px] h-[500px] rounded-full bg-[#ff6b35]/8 blur-[130px] animate-stage-glow" style={{ animationDelay: "1.5s" }}></div>
+      </div>
+
       {/* Editorial Minimalist Navbar */}
       <Navbar />
 
