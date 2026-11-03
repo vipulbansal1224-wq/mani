@@ -15,6 +15,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://youtube.com/@ManiSandhuOfficial786"),
   title: "Mani Sandhu | Singer • Creator • Mani Sandhu Media House",
   description:
     "Official portfolio of Mani Sandhu. Singer of 'Broken Heart', Vlogger, Model, Actor, and Host at Mani Sandhu Media House, Ludhiana. YouTube: @ManiSandhuOfficial786.",

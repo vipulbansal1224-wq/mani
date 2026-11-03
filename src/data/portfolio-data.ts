@@ -43,17 +43,17 @@ export const PORTFOLIO_DATA = {
   profile: {
     name: "Mani Sandhu",
     punjabiName: "ਮਨੀ ਸੰਧੂ",
-    tagline: "Singer • Actor • Model • Vlogger • Media Promoter • RJ / Host",
+    tagline: "Singer • Producer • Model • Director • Founder of Mani Sandhu Media House",
     bioShort:
-      "Independent Punjabi singer, actor, vlogger, and media promoter based in Ludhiana. Creator at Mani Sandhu Media House (@ManiSandhuOfficial786) and singer of 'Broken Heart'.",
+      "Punjabi singer, producer, model, and director based in Ludhiana and UK. Singer of 'Broken Heart', 'Mirza' (Surinder Shinda Tribute), 'Nakhrey Da Mull', and 'Payi Chall Dhakk'. Collaborator with Late Ustad Surinder Shinda Ji and Singer Kaur Billo.",
     bioLong: [
-      "Mani Sandhu is an independent Punjabi content creator, singer, actor, model, vlogger, and RJ/Host based out of Ludhiana, Punjab.",
-      "As a musical artist, he released his Punjabi track 'Broken Heart' across major global streaming platforms including Spotify, JioSaavn, and Wynk Music.",
-      "Through his YouTube platform 'Mani Sandhu Media House' (@ManiSandhuOfficial786), he produces Punjabi comedy skits, entertainment vlogs, and conducts media promotion interviews for artists, singers, and local talents across Punjab.",
-      "Known for his energetic and friendly personality, Mani is actively available for music promotions, media interviews, brand collaborations, and acting appearances."
+      "Mani Sandhu is a multifaceted Punjabi singer, producer, model, and the creative force behind Mani Sandhu Media House and Mani Sandhu Records, operating between Ludhiana, Punjab and the United Kingdom.",
+      "Blessed with direct mentorship and creative brotherhood with Punjabi folk giants, he recorded in studio sessions and promoted masterworks alongside the late legendary Ustad Surinder Shinda Ji ('Guddi Ishqe Di', 'Mirza' tribute) and revered vocalist Singer Kaur Billo ('Rusiya Kyu Ponahariyah', 'Maa Jota Wali').",
+      "As a singer and performer, his discography features hit singles including 'Broken Heart', 'Payi Chall Dhakk' (with Satta Singh), 'Nakhrey Da Mull' (Mehak Punjab Di 2024 UK Special), and 'Sanam Bewafa' ft. model Simran Pathan.",
+      "Through Mani Sandhu Media House and his YouTube channel (@ManiSandhuOfficial786), he produces high-concept music videos, comedy skits, and conducts premier media promotions for top industry artists."
     ],
-    location: "Ludhiana, Punjab, India",
-    profileImage: "/mani-sandhu-profile.jpg",
+    location: "Ludhiana, Punjab, India • UK",
+    profileImage: "/images/portfolio/m2_064_portfolio_studio-fashion.jpeg",
     bannerImage: "/mani-sandhu-banner.jpg",
     officialEmail: "manisandhumediahouse@gmail.com",
     phones: ["9872999854", "9478839486"],

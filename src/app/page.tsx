@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import CuratedGalleriesSection from "@/components/CuratedGalleriesSection";
 import AboutSection from "@/components/AboutSection";
 import MusicSection from "@/components/MusicSection";
 import WorksSection from "@/components/WorksSection";
@@ -36,12 +37,18 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#07080c] text-[#e5e7eb] flex flex-col relative selection:bg-[#ff2a5f]/40 selection:text-white overflow-hidden">
+    <main className="min-h-screen bg-[#07080c] text-[#e5e7eb] flex flex-col relative selection:bg-[#d4af37]/40 selection:text-white overflow-hidden">
       {/* Concert Stage Ambient Lighting Accents */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[#ff2a5f]/10 blur-[140px] animate-stage-glow"></div>
-        <div className="absolute top-[20%] right-[-10%] w-[650px] h-[650px] rounded-full bg-[#f59e0b]/10 blur-[150px] animate-stage-glow" style={{ animationDelay: "3s" }}></div>
-        <div className="absolute top-[60%] left-[-5%] w-[500px] h-[500px] rounded-full bg-[#ff6b35]/8 blur-[130px] animate-stage-glow" style={{ animationDelay: "1.5s" }}></div>
+        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[#d4af37]/8 blur-[140px] animate-stage-glow"></div>
+        <div
+          className="absolute top-[20%] right-[-10%] w-[650px] h-[650px] rounded-full bg-[#f59e0b]/8 blur-[150px] animate-stage-glow"
+          style={{ animationDelay: "3s" }}
+        ></div>
+        <div
+          className="absolute top-[60%] left-[-5%] w-[500px] h-[500px] rounded-full bg-[#ff2a5f]/6 blur-[130px] animate-stage-glow"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
       </div>
 
       {/* Editorial Minimalist Navbar */}
@@ -50,22 +57,25 @@ export default function Home() {
       {/* Hostinger Asymmetric Split Hero */}
       <Hero onOpenVideo={handleOpenVideo} />
 
-      {/* About The Artist (01) */}
+      {/* Comprehensive Curated Gallery Collections Directory (02) */}
+      <CuratedGalleriesSection />
+
+      {/* About The Artist (03) */}
       <AboutSection />
 
-      {/* Featured Music Release: "Broken Heart" (02) */}
+      {/* Featured Music Release: "Broken Heart" (04) */}
       <MusicSection />
 
-      {/* Selected Works & Video Catalogue (03) */}
+      {/* Selected Works & Video Catalogue (05) */}
       <WorksSection onOpenVideo={handleOpenVideo} />
 
-      {/* Numbered Editorial Services (04) */}
+      {/* Numbered Editorial Services (06) */}
       <ServicesList />
 
-      {/* YouTube Cover Banner Panorama (05) */}
+      {/* YouTube Cover Banner Panorama (07) */}
       <ChannelPanorama />
 
-      {/* Contact & Promotion Desk (06) */}
+      {/* Contact & Promotion Desk (08) */}
       <ContactSection />
 
       {/* Editorial Typography Footer */}
