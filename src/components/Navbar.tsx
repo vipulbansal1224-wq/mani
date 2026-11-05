@@ -145,11 +145,11 @@ export default function Navbar() {
             <WhatsAppIcon className="w-3.5 h-3.5" />
           </a>
 
-          {/* Admin & Music Studio Access (Passcode alto7528) */}
+          {/* Admin & Music Studio Access */}
           <Link
             href="/admin"
             className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#d4af37]/20 border border-white/10 hover:border-[#d4af37]/40 text-gray-400 hover:text-[#d4af37] flex items-center justify-center transition-all"
-            title="Admin Panel (alto7528)"
+            title="Admin Portal"
           >
             <Lock className="w-3.5 h-3.5" />
           </Link>
@@ -157,7 +157,7 @@ export default function Navbar() {
           <Link
             href="/music-panel"
             className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#d4af37]/20 border border-white/10 hover:border-[#d4af37]/40 text-gray-400 hover:text-[#d4af37] flex items-center justify-center transition-all"
-            title="Music Panel (alto7528)"
+            title="Music Studio Panel"
           >
             <Music className="w-3.5 h-3.5" />
           </Link>

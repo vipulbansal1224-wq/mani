@@ -180,7 +180,7 @@ export default function Footer() {
               className="hover:text-[#d4af37] transition-colors flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-[#d4af37]/15 border border-white/5 hover:border-[#d4af37]/30"
             >
               <Lock className="w-3 h-3 text-[#d4af37]" />
-              <span>Admin Portal (alto7528)</span>
+              <span>Admin Portal</span>
             </Link>
             <Link
               href="/music-panel"

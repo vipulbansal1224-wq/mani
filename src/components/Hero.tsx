@@ -25,94 +25,12 @@ interface HeroProps {
 
 export default function Hero({ onOpenVideo }: HeroProps) {
   const { profile, activeSiteTrack, currentPlayingTrack, isPlaying, togglePlayTrack } = usePortfolio();
-  const [isPlayingBeat, setIsPlayingBeat] = useState(false);
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const beatIntervalRef = useRef<number | null>(null);
 
   const isCurrentActivePlaying = isPlaying && currentPlayingTrack?.id === activeSiteTrack?.id;
 
   const handleHeroAudioToggle = () => {
-    if (activeSiteTrack) {
-      togglePlayTrack(activeSiteTrack);
-    } else {
-      toggleBeat();
-    }
+    togglePlayTrack(activeSiteTrack || undefined);
   };
-
-  // Web Audio API Punjabi rhythm synthesizer loop
-  const toggleBeat = () => {
-    if (isPlayingBeat) {
-      if (beatIntervalRef.current) clearInterval(beatIntervalRef.current);
-      if (audioCtxRef.current) {
-        audioCtxRef.current.close().catch(() => {});
-        audioCtxRef.current = null;
-      }
-      setIsPlayingBeat(false);
-      return;
-    }
-
-    try {
-      const AudioCtx =
-        window.AudioContext ||
-        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      const ctx = new AudioCtx();
-      audioCtxRef.current = ctx;
-
-      let step = 0;
-      const chords = [220, 261.63, 329.63, 392];
-
-      const playDrumHit = (freq: number, decay: number, gainVal: number) => {
-        if (!ctx || ctx.state === "suspended") ctx.resume();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.frequency.setValueAtTime(freq, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + decay);
-        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + decay);
-        osc.start();
-        osc.stop(ctx.currentTime + decay);
-      };
-
-      const playChordNote = (freq: number) => {
-        if (!ctx) return;
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(freq, ctx.currentTime);
-        gain.gain.setValueAtTime(0.05, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.35);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.35);
-      };
-
-      const interval = window.setInterval(() => {
-        if (!ctx) return;
-        if (step % 4 === 0) playDrumHit(140, 0.22, 0.25);
-        if (step % 4 === 2) playDrumHit(280, 0.12, 0.15);
-        if (step % 2 === 0) {
-          const note = chords[(step / 2) % chords.length];
-          playChordNote(note);
-        }
-        step = (step + 1) % 16;
-      }, 125);
-
-      beatIntervalRef.current = interval;
-      setIsPlayingBeat(true);
-    } catch {
-      setIsPlayingBeat(true);
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      if (beatIntervalRef.current) clearInterval(beatIntervalRef.current);
-      if (audioCtxRef.current) audioCtxRef.current.close().catch(() => {});
-    };
-  }, []);
 
   return (
     <section className="relative min-h-[95vh] pt-32 pb-20 flex items-center justify-center border-b border-white/10 overflow-hidden">
@@ -162,14 +80,14 @@ export default function Hero({ onOpenVideo }: HeroProps) {
                   <button
                     onClick={handleHeroAudioToggle}
                     className={`relative w-12 h-12 rounded-full flex items-center justify-center shrink-0 transition-transform ${
-                      isCurrentActivePlaying || isPlayingBeat
+                      isCurrentActivePlaying
                         ? "shadow-lg shadow-[#d4af37]/40 scale-105"
                         : "hover:scale-105"
                     } bg-gradient-to-tr from-[#d4af37] to-[#f59e0b] text-black p-0.5 cursor-pointer`}
                     title={isCurrentActivePlaying ? "Pause Audio" : "Play Featured Track"}
                   >
                     <div className="w-full h-full rounded-full bg-[#0a0c14] flex items-center justify-center">
-                      {isCurrentActivePlaying || isPlayingBeat ? (
+                      {isCurrentActivePlaying ? (
                         <Pause className="w-5 h-5 text-[#d4af37]" />
                       ) : (
                         <Play className="w-5 h-5 text-[#d4af37] fill-[#d4af37] ml-0.5" />
@@ -217,28 +135,28 @@ export default function Hero({ onOpenVideo }: HeroProps) {
                       <span
                         key={idx}
                         className={`flex-1 rounded-full transition-all ${
-                          isPlayingBeat
-                            ? "bg-gradient-to-t from-[#d4af37] to-[#f59e0b]"
+                          isCurrentActivePlaying
+                            ? "bg-gradient-to-t from-[#d4af37] to-[#f59e0b] animate-pulse"
                             : "bg-white/15"
                         }`}
-                        style={{ height: isPlayingBeat ? "100%" : `${baseHeight}%` }}
+                        style={{ height: isCurrentActivePlaying ? "100%" : `${baseHeight}%` }}
                       ></span>
                     )
                   )}
                 </div>
                 <button
-                  onClick={toggleBeat}
+                  onClick={handleHeroAudioToggle}
                   className="flex items-center gap-1 text-[11px] font-mono text-gray-400 hover:text-white transition-colors cursor-pointer shrink-0"
                 >
-                  {isPlayingBeat ? (
+                  {isCurrentActivePlaying ? (
                     <>
                       <Volume2 className="w-3.5 h-3.5 text-[#d4af37] animate-pulse" />
-                      <span className="text-[#d4af37]">Audio ON</span>
+                      <span className="text-[#d4af37]">Playing Song</span>
                     </>
                   ) : (
                     <>
                       <VolumeX className="w-3.5 h-3.5 text-gray-500" />
-                      <span>Preview groove</span>
+                      <span>Play Song</span>
                     </>
                   )}
                 </button>

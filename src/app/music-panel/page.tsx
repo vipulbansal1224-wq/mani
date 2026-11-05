@@ -25,6 +25,7 @@ import {
   LogOut,
   X,
   Layers,
+  Edit3,
 } from "lucide-react";
 
 export default function MusicPanelPage() {
@@ -32,6 +33,7 @@ export default function MusicPanelPage() {
     musicTracks,
     activeSiteTrack,
     addMusicTrack,
+    updateMusicTrack,
     deleteMusicTrack,
     setActiveSiteTrack,
     resetTracksToDefault,
@@ -67,6 +69,13 @@ export default function MusicPanelPage() {
 
   // External MP3 URL input option
   const [externalAudioUrl, setExternalAudioUrl] = useState("");
+
+  // Edit Track State
+  const [editingTrack, setEditingTrack] = useState<MusicTrackItem | null>(null);
+  const [editingAudioFile, setEditingAudioFile] = useState<File | null>(null);
+  const [editingAudioDataUrl, setEditingAudioDataUrl] = useState<string>("");
+  const [editingCoverPreview, setEditingCoverPreview] = useState<string | null>(null);
+  const [isUpdatingTrack, setIsUpdatingTrack] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -182,6 +191,62 @@ export default function MusicPanelPage() {
     }
   };
 
+  // Edit Track Handlers
+  const handleEditTrackAudioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setEditingAudioFile(file);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const result = event.target?.result as string;
+        setEditingAudioDataUrl(result);
+        if (editingTrack) {
+          setEditingTrack({ ...editingTrack, audioSrc: result });
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleEditTrackCoverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const result = event.target?.result as string;
+        setEditingCoverPreview(result);
+        if (editingTrack) {
+          setEditingTrack({ ...editingTrack, coverSrc: result });
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleEditTrackSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingTrack) return;
+    setIsUpdatingTrack(true);
+    try {
+      await updateMusicTrack(
+        editingTrack.id,
+        editingTrack,
+        editingAudioDataUrl || undefined,
+        editingCoverPreview || undefined
+      );
+      setEditingTrack(null);
+      setEditingAudioFile(null);
+      setEditingAudioDataUrl("");
+      setEditingCoverPreview(null);
+      alert("Song audio and details updated successfully!");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to update song.");
+    } finally {
+      setIsUpdatingTrack(false);
+    }
+  };
+
   // PASSCODE LOCK SCREEN
   if (!isAdminLoggedIn) {
     return (
@@ -219,13 +284,13 @@ export default function MusicPanelPage() {
                   setPasscode(e.target.value);
                   setAuthError(false);
                 }}
-                placeholder="Enter passcode (alto7528)"
+                placeholder="Enter security passcode"
                 className="w-full px-4 py-3 bg-black/60 border border-white/15 focus:border-[#d4af37] rounded-xl text-white font-mono tracking-widest text-center text-lg placeholder:text-gray-600 focus:outline-none transition-colors"
                 autoFocus
               />
               {authError && (
                 <p className="text-xs text-rose-400 mt-2 text-center font-mono">
-                  Incorrect passcode! Kripya &quot;alto7528&quot; enter karo.
+                  Incorrect passcode! Kripya sahi password enter karo.
                 </p>
               )}
             </div>
@@ -274,7 +339,7 @@ export default function MusicPanelPage() {
                 </span>
               </div>
               <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">
-                Mani Sandhu Records &bull; alto7528
+                Mani Sandhu Records &bull; Official Audio Studio
               </span>
             </div>
           </div>
@@ -644,7 +709,7 @@ export default function MusicPanelPage() {
                   </div>
 
                   {/* Actions */}
-                  <div className="flex items-center gap-2 shrink-0">
+                  <div className="flex flex-wrap items-center gap-2 shrink-0">
                     <button
                       onClick={() => togglePlayTrack(track)}
                       className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
@@ -661,10 +726,24 @@ export default function MusicPanelPage() {
                       )}
                     </button>
 
+                    <button
+                      onClick={() => {
+                        setEditingTrack(track);
+                        setEditingAudioFile(null);
+                        setEditingAudioDataUrl("");
+                        setEditingCoverPreview(null);
+                      }}
+                      className="px-2.5 py-1.5 rounded-lg bg-[#d4af37]/15 hover:bg-[#d4af37]/30 border border-[#d4af37]/40 text-[#fef3c7] hover:text-white transition-all text-xs font-semibold flex items-center gap-1.5"
+                      title="Change Song / Replace MP3 Audio / Edit Info"
+                    >
+                      <Edit3 className="w-3.5 h-3.5 text-[#d4af37]" />
+                      <span>Change / Edit</span>
+                    </button>
+
                     {!isSiteTheme && (
                       <button
                         onClick={() => setActiveSiteTrack(track.id)}
-                        className="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-[#d4af37]/20 border border-white/10 hover:border-[#d4af37]/40 text-[11px] text-gray-300 hover:text-[#fef3c7] transition-colors"
+                        className="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-[#d4af37]/20 border border-white/10 hover:border-[#d4af37]/40 text-xs text-gray-300 hover:text-[#fef3c7] transition-colors"
                         title="Set this song to play on the homepage"
                       >
                         Set Active
@@ -689,6 +768,201 @@ export default function MusicPanelPage() {
           </div>
         </div>
       </div>
+
+      {/* EDIT / CHANGE TRACK MODAL */}
+      {editingTrack && (
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+          <form
+            onSubmit={handleEditTrackSubmit}
+            className="w-full max-w-xl bg-[#0f1118] border-2 border-[#d4af37]/50 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto"
+          >
+            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+              <div className="flex items-center gap-2">
+                <Music className="w-5 h-5 text-[#d4af37]" />
+                <h3 className="font-serif font-black text-lg text-white">
+                  Change / Edit Song: {editingTrack.title}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setEditingTrack(null)}
+                className="text-gray-400 hover:text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Replace Audio File Section */}
+            <div className="p-4 rounded-2xl bg-black/50 border border-white/15 space-y-3">
+              <label className="block text-xs font-mono uppercase text-[#d4af37] font-bold tracking-wider">
+                1. Change / Replace MP3 Audio File
+              </label>
+              <div className="border border-dashed border-[#d4af37]/40 hover:border-[#d4af37] rounded-xl p-4 text-center bg-black/40 relative cursor-pointer">
+                <input
+                  type="file"
+                  accept="audio/*,.mp3,.wav,.m4a"
+                  onChange={handleEditTrackAudioChange}
+                  className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+                />
+                <FileAudio className="w-8 h-8 text-[#d4af37] mx-auto mb-1.5" />
+                <p className="text-xs font-bold text-white">
+                  Click to choose new MP3 song from your mobile / computer
+                </p>
+                <p className="text-[10px] text-gray-400 mt-0.5">MP3, WAV, M4A, AAC</p>
+              </div>
+
+              {editingAudioFile && (
+                <div className="p-2.5 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold flex items-center gap-2">
+                  <Check className="w-4 h-4" />
+                  <span>New Audio Selected: {editingAudioFile.name} (ready to save)</span>
+                </div>
+              )}
+
+              <div>
+                <label className="block text-[10px] font-mono text-gray-400 mb-1">
+                  Or enter direct MP3 audio URL
+                </label>
+                <input
+                  type="text"
+                  placeholder="https://example.com/song.mp3"
+                  value={editingTrack.audioSrc.startsWith("idb_audio_") || editingTrack.audioSrc.startsWith("data:") ? "" : editingTrack.audioSrc}
+                  onChange={(e) =>
+                    setEditingTrack({ ...editingTrack, audioSrc: e.target.value })
+                  }
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded-lg text-xs text-white focus:outline-none focus:border-[#d4af37]"
+                />
+              </div>
+            </div>
+
+            {/* Metadata Fields */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-mono uppercase text-gray-300 tracking-wider mb-1">
+                  Song Title
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={editingTrack.title}
+                  onChange={(e) =>
+                    setEditingTrack({ ...editingTrack, title: e.target.value })
+                  }
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded-lg text-xs text-white focus:outline-none focus:border-[#d4af37]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-mono uppercase text-gray-300 tracking-wider mb-1">
+                  Singer / Artist
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={editingTrack.artist}
+                  onChange={(e) =>
+                    setEditingTrack({ ...editingTrack, artist: e.target.value })
+                  }
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded-lg text-xs text-white focus:outline-none focus:border-[#d4af37]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-mono uppercase text-gray-300 tracking-wider mb-1">
+                  Category / Genre
+                </label>
+                <input
+                  type="text"
+                  value={editingTrack.category}
+                  onChange={(e) =>
+                    setEditingTrack({ ...editingTrack, category: e.target.value })
+                  }
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded-lg text-xs text-white focus:outline-none focus:border-[#d4af37]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-mono uppercase text-gray-300 tracking-wider mb-1">
+                  Release Year
+                </label>
+                <input
+                  type="text"
+                  value={editingTrack.year}
+                  onChange={(e) =>
+                    setEditingTrack({ ...editingTrack, year: e.target.value })
+                  }
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded-lg text-xs text-white focus:outline-none focus:border-[#d4af37]"
+                />
+              </div>
+            </div>
+
+            {/* Cover Art Changer */}
+            <div>
+              <label className="block text-xs font-mono uppercase text-gray-300 tracking-wider mb-1">
+                Change Album Cover Photo
+              </label>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl overflow-hidden bg-black border border-white/10 shrink-0">
+                  <img
+                    src={editingCoverPreview || editingTrack.coverSrc || "/images/portfolio/m2_064_portfolio_studio-fashion.jpeg"}
+                    alt={editingTrack.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleEditTrackCoverChange}
+                  className="flex-1 px-3 py-1.5 bg-black/60 border border-white/10 rounded-lg text-xs text-gray-300 file:mr-2 file:py-1 file:px-2.5 file:rounded-md file:border-0 file:text-[11px] file:bg-[#d4af37] file:text-black hover:file:bg-[#b38f2a]"
+                />
+              </div>
+            </div>
+
+            {/* Set Active Checkbox */}
+            <div className="flex items-center gap-2 pt-1">
+              <input
+                type="checkbox"
+                id="editTrackActiveCheck"
+                checked={editingTrack.isActiveForSite || false}
+                onChange={(e) =>
+                  setEditingTrack({ ...editingTrack, isActiveForSite: e.target.checked })
+                }
+                className="w-4 h-4 rounded accent-[#d4af37] cursor-pointer"
+              />
+              <label htmlFor="editTrackActiveCheck" className="text-xs text-gray-300 cursor-pointer">
+                Set as Active Theme Song for Website
+              </label>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex items-center justify-end gap-3 pt-3 border-t border-white/10">
+              <button
+                type="button"
+                onClick={() => setEditingTrack(null)}
+                className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs text-gray-300"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={isUpdatingTrack}
+                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#f59e0b] hover:from-[#b38f2a] hover:to-[#d97706] text-black font-extrabold text-xs uppercase tracking-wider shadow-lg flex items-center gap-2"
+              >
+                {isUpdatingTrack ? (
+                  <>
+                    <RefreshCw className="w-4 h-4 animate-spin" />
+                    <span>Saving Song...</span>
+                  </>
+                ) : (
+                  <>
+                    <Check className="w-4 h-4" />
+                    <span>Save Song &amp; Audio Updates</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </main>
   );
 }

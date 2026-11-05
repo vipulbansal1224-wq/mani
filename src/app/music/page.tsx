@@ -147,7 +147,7 @@ export default function MusicPage() {
                   className="px-3 py-1 rounded-lg bg-[#d4af37]/20 hover:bg-[#d4af37]/30 border border-[#d4af37]/40 text-[#fef3c7] text-xs font-bold font-mono uppercase flex items-center gap-1.5 transition-colors"
                 >
                   <Lock className="w-3 h-3 text-[#d4af37]" />
-                  <span>Upload MP3 (alto7528) &rarr;</span>
+                  <span>Upload / Manage MP3 &rarr;</span>
                 </Link>
                 <span className="text-xs text-gray-400 font-mono">
                   {musicTracks.length} Playable Tracks

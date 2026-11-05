@@ -63,7 +63,7 @@ export default function MusicSection() {
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#d4af37]/20 border border-[#d4af37]/40 text-[#fef3c7] text-xs font-mono font-bold hover:bg-[#d4af37]/30 transition-colors"
             >
               <Lock className="w-3 h-3 text-[#d4af37]" />
-              <span>Upload MP3 (alto7528) &rarr;</span>
+              <span>Upload / Manage MP3 &rarr;</span>
             </Link>
           </div>
         </div>

@@ -114,7 +114,7 @@ interface PortfolioContextType {
 
   // Gallery Actions
   addImage: (item: Omit<GalleryItem, "id">, fileDataUrl?: string) => Promise<GalleryItem>;
-  updateImage: (id: string, updates: Partial<GalleryItem>) => void;
+  updateImage: (id: string, updates: Partial<GalleryItem>, fileDataUrl?: string) => Promise<void>;
   deleteImage: (id: string) => void;
   bulkAddImages: (items: Array<{ item: Omit<GalleryItem, "id">; fileDataUrl?: string }>) => Promise<void>;
   resetImagesToDefault: () => void;
@@ -128,7 +128,12 @@ interface PortfolioContextType {
   musicTracks: MusicTrackItem[];
   activeSiteTrack: MusicTrackItem | null;
   addMusicTrack: (track: Omit<MusicTrackItem, "id">, audioDataUrl?: string) => Promise<MusicTrackItem>;
-  updateMusicTrack: (id: string, updates: Partial<MusicTrackItem>) => void;
+  updateMusicTrack: (
+    id: string,
+    updates: Partial<MusicTrackItem>,
+    audioDataUrl?: string,
+    coverDataUrl?: string
+  ) => Promise<void>;
   deleteMusicTrack: (id: string) => void;
   setActiveSiteTrack: (id: string) => void;
   resetTracksToDefault: () => void;
@@ -139,6 +144,8 @@ interface PortfolioContextType {
   playbackProgress: number; // 0 to 100
   currentTimeFormatted: string;
   durationFormatted: string;
+  audioError: string | null;
+  clearAudioError: () => void;
   playTrack: (track: MusicTrackItem) => void;
   pauseTrack: () => void;
   togglePlayTrack: (track?: MusicTrackItem) => void;
@@ -175,6 +182,9 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
   const [playbackProgress, setPlaybackProgress] = useState(0);
   const [currentTimeFormatted, setCurrentTimeFormatted] = useState("0:00");
   const [durationFormatted, setDurationFormatted] = useState("0:00");
+  const [audioError, setAudioError] = useState<string | null>(null);
+
+  const clearAudioError = () => setAudioError(null);
 
   const audioElementRef = useRef<HTMLAudioElement | null>(null);
 
@@ -242,6 +252,7 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
     const handleError = () => {
       console.warn("Audio playback error, falling back");
       setIsPlaying(false);
+      setAudioError("Audio playback error. Please upload your MP3 song file in the Music Panel.");
     };
 
     audio.addEventListener("timeupdate", handleTimeUpdate);
@@ -258,23 +269,35 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
 
   // Audio play/pause controls
   const playTrack = async (track: MusicTrackItem) => {
+    setAudioError(null);
     setCurrentPlayingTrack(track);
 
     let src = track.audioSrc;
     // Check if it's an indexedDB key
     if (src.startsWith("idb_audio_")) {
       const stored = await getMediaAsset(src);
-      if (stored) src = stored;
+      if (stored) {
+        src = stored;
+      } else {
+        setAudioError("Uploaded MP3 not found. Please upload your MP3 in the Music Panel.");
+        setIsPlaying(false);
+        return;
+      }
     }
 
     if (audioElementRef.current) {
       audioElementRef.current.src = src;
+      audioElementRef.current.load();
       audioElementRef.current
         .play()
-        .then(() => setIsPlaying(true))
+        .then(() => {
+          setIsPlaying(true);
+          setAudioError(null);
+        })
         .catch((e) => {
           console.warn("Autoplay blocked or playback error:", e);
           setIsPlaying(false);
+          setAudioError("Unable to play track. Please upload your MP3 song file in the Music Panel.");
         });
     }
   };
@@ -355,10 +378,25 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
     return newItem;
   };
 
-  const updateImage = (id: string, updates: Partial<GalleryItem>) => {
-    const updated = galleryItems.map((item) => (item.id === id ? { ...item, ...updates } : item));
+  const updateImage = async (
+    id: string,
+    updates: Partial<GalleryItem>,
+    fileDataUrl?: string
+  ) => {
+    let finalUpdates = { ...updates };
+    if (fileDataUrl) {
+      await setMediaAsset(`idb_img_${id}`, fileDataUrl);
+      finalUpdates.src = fileDataUrl;
+    }
+    const updated = galleryItems.map((item) =>
+      item.id === id ? { ...item, ...finalUpdates } : item
+    );
     setGalleryItems(updated);
-    localStorage.setItem(STORAGE_KEYS.GALLERY, JSON.stringify(updated));
+    try {
+      localStorage.setItem(STORAGE_KEYS.GALLERY, JSON.stringify(updated));
+    } catch {
+      console.warn("Storage quota limit reached for localStorage gallery cache");
+    }
   };
 
   const deleteImage = (id: string) => {
@@ -456,13 +494,63 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
     return newTrack;
   };
 
-  const updateMusicTrack = (id: string, updates: Partial<MusicTrackItem>) => {
-    let updated = musicTracks.map((t) => (t.id === id ? { ...t, ...updates } : t));
+  const updateMusicTrack = async (
+    id: string,
+    updates: Partial<MusicTrackItem>,
+    audioDataUrl?: string,
+    coverDataUrl?: string
+  ) => {
+    let finalAudioSrc = updates.audioSrc;
+    if (audioDataUrl) {
+      const key = `idb_audio_${id}`;
+      await setMediaAsset(key, audioDataUrl);
+      finalAudioSrc = audioDataUrl;
+    }
+
+    let finalCoverSrc = updates.coverSrc;
+    if (coverDataUrl) {
+      const coverKey = `idb_cover_${id}`;
+      await setMediaAsset(coverKey, coverDataUrl);
+      finalCoverSrc = coverDataUrl;
+    }
+
+    let updated = musicTracks.map((t) => {
+      if (t.id === id) {
+        return {
+          ...t,
+          ...updates,
+          ...(finalAudioSrc ? { audioSrc: finalAudioSrc } : {}),
+          ...(finalCoverSrc ? { coverSrc: finalCoverSrc } : {}),
+        };
+      }
+      return t;
+    });
+
     if (updates.isActiveForSite) {
       updated = updated.map((t) => (t.id === id ? t : { ...t, isActiveForSite: false }));
     }
+
     setMusicTracks(updated);
-    localStorage.setItem(STORAGE_KEYS.TRACKS, JSON.stringify(updated));
+
+    if (currentPlayingTrack?.id === id) {
+      const updatedCurrent = updated.find((t) => t.id === id);
+      if (updatedCurrent) {
+        setCurrentPlayingTrack(updatedCurrent);
+        if (finalAudioSrc && audioElementRef.current) {
+          audioElementRef.current.src = finalAudioSrc;
+        }
+      }
+    }
+
+    try {
+      const cleanTracks = updated.map((t) => ({
+        ...t,
+        audioSrc: t.audioSrc.length > 500 ? `idb_audio_${t.id}` : t.audioSrc,
+      }));
+      localStorage.setItem(STORAGE_KEYS.TRACKS, JSON.stringify(cleanTracks));
+    } catch (err) {
+      console.warn("Storage error on music track update:", err);
+    }
   };
 
   const deleteMusicTrack = (id: string) => {
@@ -543,6 +631,8 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
         playbackProgress,
         currentTimeFormatted,
         durationFormatted,
+        audioError,
+        clearAudioError,
         playTrack,
         pauseTrack,
         togglePlayTrack,

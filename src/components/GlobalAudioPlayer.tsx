@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { usePortfolio } from "@/context/PortfolioContext";
-import { Play, Pause, X, Music, Volume2 } from "lucide-react";
+import { Play, Pause, X, Music, Volume2, AlertCircle } from "lucide-react";
 
 export default function GlobalAudioPlayer() {
   const {
@@ -11,6 +12,8 @@ export default function GlobalAudioPlayer() {
     playbackProgress,
     currentTimeFormatted,
     durationFormatted,
+    audioError,
+    clearAudioError,
     togglePlayTrack,
     pauseTrack,
     seekTrack,
@@ -46,7 +49,7 @@ export default function GlobalAudioPlayer() {
             <span className="text-[10px] font-mono uppercase tracking-widest text-[#d4af37] font-bold truncate">
               {currentPlayingTrack.category || "Official Music"}
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className={`w-1.5 h-1.5 rounded-full ${isPlaying ? "bg-emerald-400 animate-pulse" : "bg-gray-500"}`} />
           </div>
           <h4 className="text-xs font-bold text-white truncate font-serif">
             {currentPlayingTrack.title}
@@ -97,6 +100,22 @@ export default function GlobalAudioPlayer() {
         </div>
         <span>{durationFormatted}</span>
       </div>
+
+      {/* Audio Error Banner */}
+      {audioError && (
+        <div className="mt-2.5 p-2 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-between gap-2 text-[11px] text-amber-200">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <AlertCircle className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <span className="truncate">{audioError}</span>
+          </div>
+          <Link
+            href="/music-panel"
+            className="shrink-0 px-2 py-0.5 rounded bg-amber-400 text-black font-bold text-[10px] uppercase hover:bg-amber-300"
+          >
+            Upload MP3
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

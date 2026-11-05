@@ -78,6 +78,8 @@ export default function AdminPage() {
 
   // Edit Image Modal
   const [editingItem, setEditingItem] = useState<GalleryItem | null>(null);
+  const [editingFilePreview, setEditingFilePreview] = useState<string | null>(null);
+  const [editingFileDataUrl, setEditingFileDataUrl] = useState<string | null>(null);
 
   // Profile Form State
   const [profileForm, setProfileForm] = useState(profile);
@@ -205,12 +207,31 @@ export default function AdminPage() {
     setTimeout(() => setBulkProgress(null), 3000);
   };
 
+  // Handle Edit Image File Selection
+  const handleEditFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const result = event.target?.result as string;
+        setEditingFilePreview(result);
+        setEditingFileDataUrl(result);
+        if (editingItem) {
+          setEditingItem({ ...editingItem, src: result });
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   // Save Edited Image
-  const handleEditSave = (e: React.FormEvent) => {
+  const handleEditSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!editingItem) return;
-    updateImage(editingItem.id, editingItem);
+    await updateImage(editingItem.id, editingItem, editingFileDataUrl || undefined);
     setEditingItem(null);
+    setEditingFilePreview(null);
+    setEditingFileDataUrl(null);
   };
 
   // Save Profile Form
@@ -271,14 +292,14 @@ export default function AdminPage() {
                     setPasscode(e.target.value);
                     setAuthError(false);
                   }}
-                  placeholder="Enter passcode (alto7528)"
+                  placeholder="Enter security passcode"
                   className="w-full px-4 py-3 bg-black/60 border border-white/15 focus:border-[#d4af37] rounded-xl text-white font-mono tracking-widest text-center text-lg placeholder:text-gray-600 focus:outline-none transition-colors"
                   autoFocus
                 />
               </div>
               {authError && (
                 <p className="text-xs text-rose-400 mt-2 text-center font-mono">
-                  Incorrect passcode! Kripya &quot;alto7528&quot; enter karo.
+                  Incorrect passcode! Kripya sahi password enter karo.
                 </p>
               )}
             </div>
@@ -715,9 +736,13 @@ export default function AdminPage() {
                     {/* Quick action overlay */}
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                       <button
-                        onClick={() => setEditingItem(item)}
+                        onClick={() => {
+                          setEditingFilePreview(null);
+                          setEditingFileDataUrl(null);
+                          setEditingItem(item);
+                        }}
                         className="p-2.5 rounded-full bg-white text-black hover:bg-[#d4af37] transition-colors"
-                        title="Edit Info"
+                        title="Edit Info & Change Image"
                       >
                         <Edit3 className="w-4 h-4" />
                       </button>
@@ -749,10 +774,14 @@ export default function AdminPage() {
                     <div className="mt-2 pt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-gray-500">
                       <span>#{item.id.slice(-6)}</span>
                       <button
-                        onClick={() => setEditingItem(item)}
+                        onClick={() => {
+                          setEditingFilePreview(null);
+                          setEditingFileDataUrl(null);
+                          setEditingItem(item);
+                        }}
                         className="text-[#d4af37] hover:underline"
                       >
-                        Edit
+                        Edit / Change
                       </button>
                     </div>
                   </div>
@@ -1122,12 +1151,63 @@ export default function AdminPage() {
               </button>
             </div>
 
-            <div className="w-full h-36 rounded-xl overflow-hidden bg-black border border-white/10">
-              <img
-                src={editingItem.src}
-                alt={editingItem.title}
-                className="w-full h-full object-contain"
-              />
+            {/* Current Image & Change Image Option */}
+            <div className="space-y-2.5">
+              <label className="block text-[11px] font-mono text-gray-300 uppercase">
+                Current Photo (Click photo or button to change)
+              </label>
+              <div className="w-full h-44 rounded-xl overflow-hidden bg-black border border-white/10 relative group">
+                <img
+                  src={editingFilePreview || editingItem.src}
+                  alt={editingItem.title}
+                  className="w-full h-full object-contain"
+                />
+                <label className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-white text-xs font-bold gap-1">
+                  <Upload className="w-6 h-6 text-[#d4af37]" />
+                  <span>Click to Change / Replace Photo</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleEditFileChange}
+                    className="hidden"
+                  />
+                </label>
+              </div>
+
+              {/* Direct File Picker Button */}
+              <div className="flex flex-wrap items-center gap-2">
+                <label className="cursor-pointer px-3.5 py-1.5 rounded-xl bg-[#d4af37]/20 hover:bg-[#d4af37]/30 border border-[#d4af37]/50 text-[#fef3c7] text-xs font-bold flex items-center gap-2 transition-all">
+                  <Upload className="w-3.5 h-3.5 text-[#d4af37]" />
+                  <span>{editingFilePreview ? "Photo Changed! Click to re-pick" : "Change / Replace Image"}</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleEditFileChange}
+                    className="hidden"
+                  />
+                </label>
+                {editingFilePreview && (
+                  <span className="text-[11px] text-emerald-400 font-mono flex items-center gap-1">
+                    <Check className="w-3.5 h-3.5" /> New image ready to save!
+                  </span>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-mono text-gray-400 mb-1">
+                  Or enter new image URL to replace
+                </label>
+                <input
+                  type="text"
+                  placeholder="https://example.com/new-photo.jpg"
+                  value={editingItem.src}
+                  onChange={(e) => {
+                    setEditingFilePreview(e.target.value);
+                    setEditingItem({ ...editingItem, src: e.target.value });
+                  }}
+                  className="w-full px-3 py-1.5 bg-black/60 border border-white/10 rounded-lg text-xs text-white placeholder:text-gray-600 focus:outline-none focus:border-[#d4af37]"
+                />
+              </div>
             </div>
 
             <div>
