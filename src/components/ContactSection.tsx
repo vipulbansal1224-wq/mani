@@ -2,11 +2,12 @@
 
 import React, { useState } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
+import { usePortfolio } from "@/context/PortfolioContext";
 import { Phone, Mail, MapPin, Send, CheckCircle2, ArrowUpRight } from "lucide-react";
 import { WhatsAppIcon, YoutubeIcon, InstagramIcon } from "@/components/Icons";
 
 export default function ContactSection() {
-  const { profile } = PORTFOLIO_DATA;
+  const { profile } = usePortfolio();
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",

@@ -3,11 +3,12 @@
 import React from "react";
 import Link from "next/link";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
+import { usePortfolio } from "@/context/PortfolioContext";
 import { Phone, MapPin, Sparkles, Music, Check, Crown, ArrowUpRight } from "lucide-react";
 import { YoutubeIcon, InstagramIcon } from "@/components/Icons";
 
 export default function AboutSection() {
-  const { profile } = PORTFOLIO_DATA;
+  const { profile } = usePortfolio();
 
   return (
     <section id="about" className="py-24 border-b border-white/10 bg-[#090b11] relative overflow-hidden">

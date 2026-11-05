@@ -5,35 +5,39 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ImageLightbox from "@/components/ImageLightbox";
 import { LEGENDS_ITEMS, GalleryItem } from "@/data/gallery-data";
+import { usePortfolio } from "@/context/PortfolioContext";
 import { Sparkles, Heart, Mic, Award, Music2 } from "lucide-react";
 
 export default function LegendsPage() {
+  const { legendsItems } = usePortfolio();
+  const displayItems = legendsItems && legendsItems.length > 0 ? legendsItems : LEGENDS_ITEMS;
+
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
 
   const filterOptions = [
-    { id: "all", label: "All Archives", count: LEGENDS_ITEMS.length },
+    { id: "all", label: "All Archives", count: displayItems.length },
     {
       id: "surinder-shinda",
       label: "Ustad Surinder Shinda",
-      count: LEGENDS_ITEMS.filter((i) => i.subCategory === "surinder-shinda").length,
+      count: displayItems.filter((i) => i.subCategory === "surinder-shinda").length,
     },
     {
       id: "kaur-billo",
       label: "Singer Kaur Billo",
-      count: LEGENDS_ITEMS.filter((i) => i.subCategory === "kaur-billo").length,
+      count: displayItems.filter((i) => i.subCategory === "kaur-billo").length,
     },
     {
       id: "celebrities",
       label: "Celebrity Stars",
-      count: LEGENDS_ITEMS.filter((i) => i.subCategory === "celebrities").length,
+      count: displayItems.filter((i) => i.subCategory === "celebrities").length,
     },
   ];
 
   const filteredItems =
     activeFilter === "all"
-      ? LEGENDS_ITEMS
-      : LEGENDS_ITEMS.filter((i) => i.subCategory === activeFilter);
+      ? displayItems
+      : displayItems.filter((i) => i.subCategory === activeFilter);
 
   return (
     <main className="min-h-screen bg-[#07080c] text-[#e5e7eb] flex flex-col relative selection:bg-[#d4af37]/40 selection:text-white">

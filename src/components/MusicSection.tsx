@@ -1,76 +1,38 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
+import Link from "next/link";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
-import { Music, Play, Pause, Radio, Headphones, ArrowUpRight, Volume2, Disc, Sparkles, Heart } from "lucide-react";
+import { usePortfolio } from "@/context/PortfolioContext";
+import { Music, Play, Pause, Radio, Headphones, ArrowUpRight, Volume2, Disc, Sparkles, Heart, Lock } from "lucide-react";
 
 export default function MusicSection() {
   const { musicRelease, profile } = PORTFOLIO_DATA;
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [playbackTime, setPlaybackTime] = useState(45);
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const melodyIntervalRef = useRef<number | null>(null);
+  const {
+    activeSiteTrack,
+    currentPlayingTrack,
+    isPlaying: isGlobalPlaying,
+    togglePlayTrack,
+    playbackProgress,
+    currentTimeFormatted,
+    durationFormatted,
+  } = usePortfolio();
 
-  // Clean Web Audio API Punjabi acoustic/rhythm synthesizer for "Broken Heart" preview
-  const togglePlay = () => {
-    if (isPlaying) {
-      if (melodyIntervalRef.current) clearInterval(melodyIntervalRef.current);
-      if (audioCtxRef.current) {
-        audioCtxRef.current.close().catch(() => {});
-        audioCtxRef.current = null;
-      }
-      setIsPlaying(false);
-      return;
-    }
-
-    try {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      const ctx = new AudioCtx();
-      audioCtxRef.current = ctx;
-
-      // Sad romantic Punjabi melody scale (B minor / Dorian pentatonic feeling)
-      const scale = [246.94, 293.66, 329.63, 369.99, 440.0, 493.88];
-      let noteIndex = 0;
-
-      const playMelodyNote = (freq: number) => {
-        if (!ctx || ctx.state === "suspended") ctx.resume();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = "triangle"; // warm mellow tone
-        osc.frequency.setValueAtTime(freq, ctx.currentTime);
-        gain.gain.setValueAtTime(0.08, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.6);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.6);
-      };
-
-      const interval = window.setInterval(() => {
-        const note = scale[noteIndex % scale.length];
-        playMelodyNote(note);
-        noteIndex++;
-        setPlaybackTime((prev) => (prev >= 210 ? 0 : prev + 1));
-      }, 400);
-
-      melodyIntervalRef.current = interval;
-      setIsPlaying(true);
-    } catch {
-      setIsPlaying(true);
-    }
+  const currentTrack = activeSiteTrack || {
+    id: "default-broken-heart",
+    title: "Broken Heart",
+    artist: "Mani Sandhu",
+    category: "Punjabi Single",
+    year: "2024",
+    audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    coverSrc: "/images/portfolio/m2_064_portfolio_studio-fashion.jpeg",
+    duration: "3:42",
   };
 
-  useEffect(() => {
-    return () => {
-      if (melodyIntervalRef.current) clearInterval(melodyIntervalRef.current);
-      if (audioCtxRef.current) audioCtxRef.current.close().catch(() => {});
-    };
-  }, []);
+  const isCurrentPlaying = isGlobalPlaying && currentPlayingTrack?.id === currentTrack.id;
 
-  const formatTime = (secs: number) => {
-    const m = Math.floor(secs / 60);
-    const s = secs % 60;
-    return `${m}:${s < 10 ? "0" : ""}${s}`;
+  const handlePlayToggle = () => {
+    togglePlayTrack(currentTrack);
   };
 
   return (
@@ -89,12 +51,21 @@ export default function MusicSection() {
               <span>02 / Punjabi Sounds &amp; Releases</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif font-black text-white tracking-tight">
-              Featured Single: <span className="text-punjabi-fire">"Broken Heart"</span>
+              Featured Single: <span className="text-punjabi-fire">&quot;{currentTrack.title}&quot;</span>
             </h2>
           </div>
-          <p className="text-gray-300 text-xs sm:text-sm max-w-md leading-relaxed">
-            Mani Sandhu's breakthrough Punjabi musical release expressing raw heartbreak, passion, and soulful folk melody.
-          </p>
+          <div className="flex flex-col items-start md:items-end gap-2">
+            <p className="text-gray-300 text-xs sm:text-sm max-w-md leading-relaxed md:text-right">
+              Mani Sandhu&apos;s Punjabi musical releases expressing raw emotion, passion, and soulful folk melody.
+            </p>
+            <Link
+              href="/music-panel"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#d4af37]/20 border border-[#d4af37]/40 text-[#fef3c7] text-xs font-mono font-bold hover:bg-[#d4af37]/30 transition-colors"
+            >
+              <Lock className="w-3 h-3 text-[#d4af37]" />
+              <span>Upload MP3 (alto7528) &rarr;</span>
+            </Link>
+          </div>
         </div>
 
         {/* Deluxe Stage Player Card */}
@@ -109,7 +80,7 @@ export default function MusicSection() {
                 {/* Vinyl Record Behind with Grooves */}
                 <div
                   className={`absolute inset-0 rounded-full bg-[#111] border-4 border-[#222] shadow-2xl flex items-center justify-center transition-all ${
-                    isPlaying ? "animate-spin-vinyl shadow-red-500/30 shadow-2xl" : "animate-spin-vinyl-paused"
+                    isCurrentPlaying ? "animate-spin-vinyl shadow-red-500/30 shadow-2xl" : "animate-spin-vinyl-paused"
                   }`}
                   style={{
                     backgroundImage: `repeating-radial-gradient(circle, #1a1a1a 0, #1a1a1a 2px, #0d0d0d 3px, #0d0d0d 4px)`,
@@ -121,8 +92,8 @@ export default function MusicSection() {
                       {/* Center Vinyl Label with Mani Sandhu Photo */}
                       <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-[#ff2a5f] shadow-inner">
                         <img
-                          src={profile.profileImage}
-                          alt="Broken Heart Center Label"
+                          src={currentTrack.coverSrc || profile.profileImage}
+                          alt={currentTrack.title}
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
@@ -135,11 +106,11 @@ export default function MusicSection() {
 
                 {/* Center Play Button Overlay */}
                 <button
-                  onClick={togglePlay}
+                  onClick={handlePlayToggle}
                   className="absolute inset-0 m-auto w-16 h-16 rounded-full bg-[#ff2a5f] hover:bg-[#ff1e56] text-white flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
-                  title={isPlaying ? "Pause Preview" : "Play 'Broken Heart' Audio Preview"}
+                  title={isCurrentPlaying ? "Pause Audio" : `Play '${currentTrack.title}'`}
                 >
-                  {isPlaying ? (
+                  {isCurrentPlaying ? (
                     <Pause className="w-7 h-7" />
                   ) : (
                     <Play className="w-7 h-7 fill-white ml-1" />
@@ -149,9 +120,9 @@ export default function MusicSection() {
 
               {/* Status Indicator */}
               <div className="mt-6 flex items-center gap-2">
-                <span className={`w-2.5 h-2.5 rounded-full ${isPlaying ? "bg-emerald-400 animate-pulse" : "bg-gray-600"}`}></span>
+                <span className={`w-2.5 h-2.5 rounded-full ${isCurrentPlaying ? "bg-emerald-400 animate-pulse" : "bg-gray-600"}`}></span>
                 <span className="text-xs font-mono uppercase tracking-wider text-gray-300">
-                  {isPlaying ? "Playing Melodic Acoustic Preview" : "Vinyl Player Standby"}
+                  {isCurrentPlaying ? "Playing Audio Stream" : "Vinyl Player Standby"}
                 </span>
               </div>
             </div>
@@ -163,18 +134,18 @@ export default function MusicSection() {
                 <div className="flex flex-wrap items-center gap-2 mb-3">
                   <span className="px-3 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
                     <Heart className="w-3.5 h-3.5 fill-red-400" />
-                    Punjabi Heartbreak Anthem
+                    {currentTrack.category}
                   </span>
                   <span className="px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
-                    Official Release
+                    {currentTrack.year} Release
                   </span>
                 </div>
 
                 <h3 className="text-3xl sm:text-5xl font-serif font-black text-white mb-2">
-                  "Broken Heart"
+                  &quot;{currentTrack.title}&quot;
                 </h3>
                 <div className="text-sm font-sans text-gray-400 mb-5">
-                  Performed by <span className="text-white font-bold">Mani Sandhu</span> &bull; Released globally on Spotify &amp; JioSaavn
+                  Performed by <span className="text-white font-bold">{currentTrack.artist}</span> &bull; Mani Sandhu Media House
                 </div>
 
                 <p className="text-gray-300 text-sm leading-relaxed mb-6 max-w-xl">
@@ -187,21 +158,21 @@ export default function MusicSection() {
                     Lyrics Snippet &bull; ਬੋਲ
                   </div>
                   <div className="text-sm font-serif italic text-gray-200">
-                    "ਦਿਲ ਟੁੱਟਿਆ ਤੇਰੇ ਜਾਣ ਮਗਰੋਂ... ਯਾਦਾਂ ਤੇਰੀਆਂ ਨੇ ਘੇਰ ਲਿਆ।"
+                    &quot;ਦਿਲ ਟੁੱਟਿਆ ਤੇਰੇ ਜਾਣ ਮਗਰੋਂ... ਯਾਦਾਂ ਤੇਰੀਆਂ ਨੇ ਘੇਰ ਲਿਆ।&quot;
                   </div>
                   <div className="text-[11px] text-gray-400 mt-1">
                     (When you left, my heart shattered... Only memories stay behind.)
                   </div>
                 </div>
 
-                {/* Live 32-Bar Soundwave Equalizer */}
+                {/* Live Soundwave Equalizer */}
                 <div className="p-4 rounded-2xl bg-black/60 border border-white/10 mb-6">
                   <div className="flex items-center justify-between text-xs font-mono text-gray-400 mb-2">
                     <span className="text-[#ff2a5f] font-bold flex items-center gap-1">
                       <Volume2 className="w-3.5 h-3.5" />
-                      Sound Waveform
+                      Live Audio Progress
                     </span>
-                    <span>{formatTime(playbackTime)} / 03:30</span>
+                    <span>{currentTimeFormatted} / {durationFormatted || currentTrack.duration}</span>
                   </div>
 
                   {/* Dancing Waveform Bars */}
@@ -212,11 +183,11 @@ export default function MusicSection() {
                         <span
                           key={idx}
                           className={`flex-1 rounded-full transition-all ${
-                            isPlaying
+                            isCurrentPlaying
                               ? `bg-gradient-to-t from-[#ff2a5f] via-[#ff6b35] to-[#f59e0b] ${waveClass}`
                               : "bg-white/20"
                           }`}
-                          style={{ height: isPlaying ? "100%" : `${h}%` }}
+                          style={{ height: isCurrentPlaying ? "100%" : `${h}%` }}
                         ></span>
                       );
                     })}

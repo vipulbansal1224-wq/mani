@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { YoutubeIcon, InstagramIcon, WhatsAppIcon } from "@/components/Icons";
+import { usePortfolio } from "@/context/PortfolioContext";
 import {
   ArrowDown,
   Music,
@@ -23,9 +24,20 @@ interface HeroProps {
 }
 
 export default function Hero({ onOpenVideo }: HeroProps) {
+  const { profile, activeSiteTrack, currentPlayingTrack, isPlaying, togglePlayTrack } = usePortfolio();
   const [isPlayingBeat, setIsPlayingBeat] = useState(false);
   const audioCtxRef = useRef<AudioContext | null>(null);
   const beatIntervalRef = useRef<number | null>(null);
+
+  const isCurrentActivePlaying = isPlaying && currentPlayingTrack?.id === activeSiteTrack?.id;
+
+  const handleHeroAudioToggle = () => {
+    if (activeSiteTrack) {
+      togglePlayTrack(activeSiteTrack);
+    } else {
+      toggleBeat();
+    }
+  };
 
   // Web Audio API Punjabi rhythm synthesizer loop
   const toggleBeat = () => {
@@ -125,22 +137,22 @@ export default function Hero({ onOpenVideo }: HeroProps) {
 
             {/* Main Name Heading */}
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-serif font-black tracking-tight text-white leading-[1.02] mb-3">
-              Mani <span className="text-[#d4af37] italic font-normal">Sandhu</span>
+              {profile.name}
             </h1>
 
             {/* Punjabi Script & Location */}
             <div className="flex items-center gap-3 mb-6">
               <span className="text-2xl sm:text-3xl font-serif font-bold text-[#fef3c7]">
-                ਮਨੀ ਸੰਧੂ
+                {profile.punjabiName}
               </span>
               <span className="text-xs uppercase font-mono tracking-widest px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-gray-300">
-                Ludhiana, Punjab &bull; United Kingdom
+                {profile.location}
               </span>
             </div>
 
             {/* Credential Story */}
             <p className="text-sm sm:text-base text-gray-300 max-w-xl font-normal leading-relaxed mb-6">
-              Punjabi recording artist of the breakout single <strong className="text-white">&quot;Broken Heart&quot;</strong>, singer of &quot;Mirza&quot;, &quot;Nakhrey Da Mull&quot;, and &quot;Payi Chall Dhakk&quot;. Blessed with creative collaborations with legendary <span className="text-[#d4af37] font-semibold">Late Ustad Surinder Shinda Ji</span> and <span className="text-[#d4af37] font-semibold">Singer Kaur Billo</span>, leading productions across Punjab and the UK.
+              {profile.bioShort}
             </p>
 
             {/* Live Audio Beat & Track Showcase Strip */}
@@ -148,16 +160,16 @@ export default function Hero({ onOpenVideo }: HeroProps) {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-3.5">
                   <button
-                    onClick={toggleBeat}
+                    onClick={handleHeroAudioToggle}
                     className={`relative w-12 h-12 rounded-full flex items-center justify-center shrink-0 transition-transform ${
-                      isPlayingBeat
+                      isCurrentActivePlaying || isPlayingBeat
                         ? "shadow-lg shadow-[#d4af37]/40 scale-105"
                         : "hover:scale-105"
                     } bg-gradient-to-tr from-[#d4af37] to-[#f59e0b] text-black p-0.5 cursor-pointer`}
-                    title={isPlayingBeat ? "Pause Beats" : "Play Punjabi Groove"}
+                    title={isCurrentActivePlaying ? "Pause Audio" : "Play Featured Track"}
                   >
                     <div className="w-full h-full rounded-full bg-[#0a0c14] flex items-center justify-center">
-                      {isPlayingBeat ? (
+                      {isCurrentActivePlaying || isPlayingBeat ? (
                         <Pause className="w-5 h-5 text-[#d4af37]" />
                       ) : (
                         <Play className="w-5 h-5 text-[#d4af37] fill-[#d4af37] ml-0.5" />
@@ -168,12 +180,12 @@ export default function Hero({ onOpenVideo }: HeroProps) {
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-[#d4af37]">
-                        {isPlayingBeat ? "Groove Playing" : "Featured Release"}
+                        {isCurrentActivePlaying ? "Playing Live" : "Featured Release"}
                       </span>
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     </div>
                     <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                      <span>&quot;Broken Heart&quot; &bull; Mani Sandhu</span>
+                      <span>&quot;{activeSiteTrack?.title || "Broken Heart"}&quot; &bull; {activeSiteTrack?.artist || "Mani Sandhu"}</span>
                     </div>
                   </div>
                 </div>

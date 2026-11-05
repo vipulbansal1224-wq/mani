@@ -5,23 +5,27 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ImageLightbox from "@/components/ImageLightbox";
 import { SHOOTS_ITEMS, GalleryItem } from "@/data/gallery-data";
+import { usePortfolio } from "@/context/PortfolioContext";
 import { Camera, Film, Sparkles, MapPin } from "lucide-react";
 
 export default function ShootsPage() {
+  const { shootsItems } = usePortfolio();
+  const displayItems = shootsItems && shootsItems.length > 0 ? shootsItems : SHOOTS_ITEMS;
+
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
 
   const filterOptions = [
-    { id: "all", label: "All Shoots", count: SHOOTS_ITEMS.length },
+    { id: "all", label: "All Shoots", count: displayItems.length },
     {
       id: "model-shoots",
       label: "Co-Star & Model Shoots",
-      count: SHOOTS_ITEMS.filter((i) => i.subCategory === "model-shoots").length,
+      count: displayItems.filter((i) => i.subCategory === "model-shoots").length,
     },
     {
       id: "haveli-locations",
       label: "Havelis & Palatial Sets",
-      count: SHOOTS_ITEMS.filter(
+      count: displayItems.filter(
         (i) => i.subCategory === "haveli-locations" || i.subCategory === "locations"
       ).length,
     },
@@ -29,13 +33,13 @@ export default function ShootsPage() {
 
   const filteredItems =
     activeFilter === "all"
-      ? SHOOTS_ITEMS
+      ? displayItems
       : activeFilter === "haveli-locations"
-      ? SHOOTS_ITEMS.filter(
+      ? displayItems.filter(
           (i) =>
             i.subCategory === "haveli-locations" || i.subCategory === "locations"
         )
-      : SHOOTS_ITEMS.filter((i) => i.subCategory === activeFilter);
+      : displayItems.filter((i) => i.subCategory === activeFilter);
 
   return (
     <main className="min-h-screen bg-[#07080c] text-[#e5e7eb] flex flex-col relative selection:bg-[#d4af37]/40 selection:text-white">

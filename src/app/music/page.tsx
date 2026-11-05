@@ -1,39 +1,44 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ImageLightbox from "@/components/ImageLightbox";
 import { MUSIC_ITEMS, GalleryItem } from "@/data/gallery-data";
-import { Music, Disc, Mic2, Play, Volume2, Sparkles, ExternalLink } from "lucide-react";
+import { usePortfolio } from "@/context/PortfolioContext";
+import { Music, Disc, Mic2, Play, Pause, Volume2, Sparkles, ExternalLink, Lock } from "lucide-react";
 
 export default function MusicPage() {
+  const { musicItems, musicTracks, currentPlayingTrack, isPlaying, togglePlayTrack } = usePortfolio();
+  const displayItems = musicItems && musicItems.length > 0 ? musicItems : MUSIC_ITEMS;
+
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
 
   const filterOptions = [
-    { id: "all", label: "All Music Assets", count: MUSIC_ITEMS.length },
+    { id: "all", label: "All Music Assets", count: displayItems.length },
     {
       id: "posters",
       label: "Official Song Posters",
-      count: MUSIC_ITEMS.filter((i) => i.subCategory === "posters").length,
+      count: displayItems.filter((i) => i.subCategory === "posters").length,
     },
     {
       id: "studio-recording",
       label: "Vocal Studio Booth",
-      count: MUSIC_ITEMS.filter((i) => i.subCategory === "studio-recording").length,
+      count: displayItems.filter((i) => i.subCategory === "studio-recording").length,
     },
     {
       id: "branding",
       label: "Label Branding",
-      count: MUSIC_ITEMS.filter((i) => i.subCategory === "branding").length,
+      count: displayItems.filter((i) => i.subCategory === "branding").length,
     },
   ];
 
   const filteredItems =
     activeFilter === "all"
-      ? MUSIC_ITEMS
-      : MUSIC_ITEMS.filter((i) => i.subCategory === activeFilter);
+      ? displayItems
+      : displayItems.filter((i) => i.subCategory === activeFilter);
 
   const discographyTracks = [
     {
@@ -132,46 +137,85 @@ export default function MusicPage() {
 
           {/* Interactive Discography Table */}
           <div className="w-full mt-4 bg-[#12141c]/80 rounded-2xl border border-white/10 overflow-hidden">
-            <div className="px-6 py-4 bg-white/5 border-b border-white/10 flex items-center justify-between">
+            <div className="px-6 py-4 bg-white/5 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <span className="text-xs font-mono uppercase tracking-wider text-[#d4af37] font-bold flex items-center gap-2">
-                <Music className="w-4 h-4" /> Discography Catalog
+                <Music className="w-4 h-4" /> Live Music Player &amp; Audio Library
               </span>
-              <span className="text-xs text-gray-400 font-mono">
-                8 Major Punjabi Releases
-              </span>
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/music-panel"
+                  className="px-3 py-1 rounded-lg bg-[#d4af37]/20 hover:bg-[#d4af37]/30 border border-[#d4af37]/40 text-[#fef3c7] text-xs font-bold font-mono uppercase flex items-center gap-1.5 transition-colors"
+                >
+                  <Lock className="w-3 h-3 text-[#d4af37]" />
+                  <span>Upload MP3 (alto7528) &rarr;</span>
+                </Link>
+                <span className="text-xs text-gray-400 font-mono">
+                  {musicTracks.length} Playable Tracks
+                </span>
+              </div>
             </div>
 
             <div className="divide-y divide-white/5">
-              {discographyTracks.map((track, idx) => (
-                <div
-                  key={track.title}
-                  className="px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-white/[0.03] transition-colors"
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="text-xs font-mono text-gray-500 w-6">
-                      0{idx + 1}
-                    </span>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <h4 className="font-serif text-base font-bold text-white">
-                          {track.title}
-                        </h4>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#d4af37]/20 text-[#fef3c7]">
-                          {track.highlight}
+              {musicTracks.map((track, idx) => {
+                const isCurrent = currentPlayingTrack?.id === track.id;
+                const isCurrentPlaying = isCurrent && isPlaying;
+
+                return (
+                  <div
+                    key={track.id}
+                    className={`px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors ${
+                      isCurrentPlaying ? "bg-[#d4af37]/10" : "hover:bg-white/[0.03]"
+                    }`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <button
+                        onClick={() => togglePlayTrack(track)}
+                        className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-transform ${
+                          isCurrentPlaying
+                            ? "bg-[#d4af37] text-black shadow-lg shadow-[#d4af37]/30 scale-105"
+                            : "bg-white/10 text-white hover:bg-[#d4af37] hover:text-black"
+                        }`}
+                        title={isCurrentPlaying ? "Pause song" : "Play song"}
+                      >
+                        {isCurrentPlaying ? (
+                          <Pause className="w-4 h-4 fill-current" />
+                        ) : (
+                          <Play className="w-4 h-4 fill-current ml-0.5" />
+                        )}
+                      </button>
+
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h4 className="font-serif text-base font-bold text-white">
+                            {track.title}
+                          </h4>
+                          {track.isActiveForSite && (
+                            <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-[#d4af37] text-black font-extrabold uppercase">
+                              Active Theme
+                            </span>
+                          )}
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/10 text-gray-300">
+                            {track.category}
+                          </span>
+                        </div>
+                        <span className="text-xs text-gray-400">
+                          {track.artist} &bull; {track.year}
                         </span>
                       </div>
-                      <span className="text-xs text-gray-400">
-                        {track.singers} &bull; {track.label}
-                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-4 text-xs font-mono text-gray-400 sm:text-right">
+                      <span>{track.duration || "Official"}</span>
+                      <button
+                        onClick={() => togglePlayTrack(track)}
+                        className="text-[#d4af37] hover:underline font-semibold"
+                      >
+                        {isCurrentPlaying ? "Playing..." : "Play Song &rarr;"}
+                      </button>
                     </div>
                   </div>
-
-                  <div className="flex items-center gap-4 text-xs font-mono text-gray-400 sm:text-right">
-                    <span>{track.role}</span>
-                    <span className="text-[#d4af37] font-semibold">{track.year}</span>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

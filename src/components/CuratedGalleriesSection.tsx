@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { Sparkles, ArrowUpRight, Crown, Camera, User, Disc, Clapperboard } from "lucide-react";
+import { usePortfolio } from "@/context/PortfolioContext";
 import {
   CATEGORY_COUNTS,
   LEGENDS_ITEMS,
@@ -13,12 +14,14 @@ import {
 } from "@/data/gallery-data";
 
 export default function CuratedGalleriesSection() {
+  const { categoryCounts } = usePortfolio();
+
   const galleries = [
     {
       id: "legends",
       title: "Legends & Mentors Archive",
       punjabiTitle: "ਸੁਰਿੰਦਰ ਛਿੰਦਾ ਅਤੇ ਕੌਰ ਬਿੱਲੋ",
-      count: `${CATEGORY_COUNTS.legends} Historic Photographs`,
+      count: `${categoryCounts?.legends || CATEGORY_COUNTS.legends} Historic Photographs`,
       href: "/legends",
       icon: Crown,
       description:
@@ -35,7 +38,7 @@ export default function CuratedGalleriesSection() {
       id: "shoots",
       title: "Music Video Shoots & Models",
       punjabiTitle: "ਮਾਡਲ ਸ਼ੂਟ ਅਤੇ ਵੀਡੀਓਜ਼",
-      count: `${CATEGORY_COUNTS.shoots} Cinematic Stills`,
+      count: `${categoryCounts?.shoots || CATEGORY_COUNTS.shoots} Cinematic Stills`,
       href: "/shoots",
       icon: Camera,
       description:
@@ -52,7 +55,7 @@ export default function CuratedGalleriesSection() {
       id: "portfolio",
       title: "Solo Modeling & London Tour",
       punjabiTitle: "ਫੈਸ਼ਨ ਪੋਰਟਫੋਲੀਓ ਅਤੇ ਯੂਕੇ",
-      count: `${CATEGORY_COUNTS.portfolio} High-Fashion Looks`,
+      count: `${categoryCounts?.portfolio || CATEGORY_COUNTS.portfolio} High-Fashion Looks`,
       href: "/portfolio",
       icon: User,
       description:
@@ -69,7 +72,7 @@ export default function CuratedGalleriesSection() {
       id: "music",
       title: "Song Releases & Discography",
       punjabiTitle: "ਗਾਣੇ ਅਤੇ ਸਟੂਡੀਓ ਰਿਕਾਰਡਿੰਗ",
-      count: `${CATEGORY_COUNTS.music} Official Posters & Studio`,
+      count: `${categoryCounts?.music || CATEGORY_COUNTS.music} Official Posters & Studio`,
       href: "/music",
       icon: Disc,
       description:
@@ -86,7 +89,7 @@ export default function CuratedGalleriesSection() {
       id: "bts",
       title: "Behind The Scenes & Production",
       punjabiTitle: "ਕੈਮਰਾ, ਲਾਈਟਾਂ ਅਤੇ ਟੀਮ",
-      count: `${CATEGORY_COUNTS.bts} Set Moments`,
+      count: `${categoryCounts?.bts || CATEGORY_COUNTS.bts} Set Moments`,
       href: "/bts",
       icon: Clapperboard,
       description:

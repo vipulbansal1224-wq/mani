@@ -5,40 +5,44 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ImageLightbox from "@/components/ImageLightbox";
 import { PORTFOLIO_ITEMS, GalleryItem } from "@/data/gallery-data";
+import { usePortfolio } from "@/context/PortfolioContext";
 import { User, Plane, Crown, Sparkles, Award } from "lucide-react";
 
 export default function PortfolioPage() {
+  const { portfolioItems } = usePortfolio();
+  const displayItems = portfolioItems && portfolioItems.length > 0 ? portfolioItems : PORTFOLIO_ITEMS;
+
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
 
   const filterOptions = [
-    { id: "all", label: "All Portfolio", count: PORTFOLIO_ITEMS.length },
+    { id: "all", label: "All Portfolio", count: displayItems.length },
     {
       id: "studio-fashion",
       label: "Studio Fashion & Suits",
-      count: PORTFOLIO_ITEMS.filter((i) => i.subCategory === "studio-fashion").length,
+      count: displayItems.filter((i) => i.subCategory === "studio-fashion").length,
     },
     {
       id: "london-tour",
       label: "London & UK Tour",
-      count: PORTFOLIO_ITEMS.filter((i) => i.subCategory === "london-tour").length,
+      count: displayItems.filter((i) => i.subCategory === "london-tour").length,
     },
     {
       id: "traditional",
       label: "Traditional Heritage",
-      count: PORTFOLIO_ITEMS.filter((i) => i.subCategory === "traditional").length,
+      count: displayItems.filter((i) => i.subCategory === "traditional").length,
     },
     {
       id: "fitness-lifestyle",
       label: "Fitness & Street",
-      count: PORTFOLIO_ITEMS.filter((i) => i.subCategory === "fitness-lifestyle").length,
+      count: displayItems.filter((i) => i.subCategory === "fitness-lifestyle").length,
     },
   ];
 
   const filteredItems =
     activeFilter === "all"
-      ? PORTFOLIO_ITEMS
-      : PORTFOLIO_ITEMS.filter((i) => i.subCategory === activeFilter);
+      ? displayItems
+      : displayItems.filter((i) => i.subCategory === activeFilter);
 
   return (
     <main className="min-h-screen bg-[#07080c] text-[#e5e7eb] flex flex-col relative selection:bg-[#d4af37]/40 selection:text-white">

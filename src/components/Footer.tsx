@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { YoutubeIcon, InstagramIcon, WhatsAppIcon } from "@/components/Icons";
-import { ArrowUp, Music, Phone, MapPin, Heart, Sparkles } from "lucide-react";
+import { ArrowUp, Music, Phone, MapPin, Heart, Sparkles, Lock } from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -169,10 +169,26 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom copyright */}
+        {/* Bottom copyright & Admin Portal Access */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-mono">
           <div>
             &copy; 2026 Mani Sandhu Media House &bull; All Rights Reserved.
+          </div>
+          <div className="flex items-center gap-4 text-gray-400">
+            <Link
+              href="/admin"
+              className="hover:text-[#d4af37] transition-colors flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-[#d4af37]/15 border border-white/5 hover:border-[#d4af37]/30"
+            >
+              <Lock className="w-3 h-3 text-[#d4af37]" />
+              <span>Admin Portal (alto7528)</span>
+            </Link>
+            <Link
+              href="/music-panel"
+              className="hover:text-[#d4af37] transition-colors flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-[#d4af37]/15 border border-white/5 hover:border-[#d4af37]/30"
+            >
+              <Music className="w-3 h-3 text-[#d4af37]" />
+              <span>Music Studio</span>
+            </Link>
           </div>
           <button
             onClick={scrollToTop}

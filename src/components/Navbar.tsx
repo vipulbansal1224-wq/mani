@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { YoutubeIcon, InstagramIcon, WhatsAppIcon } from "@/components/Icons";
-import { Phone, Menu, X, Sparkles, ArrowUpRight } from "lucide-react";
+import { Phone, Menu, X, Sparkles, ArrowUpRight, Lock, Music } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -145,6 +145,23 @@ export default function Navbar() {
             <WhatsAppIcon className="w-3.5 h-3.5" />
           </a>
 
+          {/* Admin & Music Studio Access (Passcode alto7528) */}
+          <Link
+            href="/admin"
+            className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#d4af37]/20 border border-white/10 hover:border-[#d4af37]/40 text-gray-400 hover:text-[#d4af37] flex items-center justify-center transition-all"
+            title="Admin Panel (alto7528)"
+          >
+            <Lock className="w-3.5 h-3.5" />
+          </Link>
+
+          <Link
+            href="/music-panel"
+            className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#d4af37]/20 border border-white/10 hover:border-[#d4af37]/40 text-gray-400 hover:text-[#d4af37] flex items-center justify-center transition-all"
+            title="Music Panel (alto7528)"
+          >
+            <Music className="w-3.5 h-3.5" />
+          </Link>
+
           <Link
             href="/contact"
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#d4af37] to-[#b38f2a] text-black font-semibold text-xs tracking-wider uppercase hover:shadow-lg hover:shadow-[#d4af37]/20 transition-all"
@@ -195,23 +212,23 @@ export default function Navbar() {
           </nav>
 
           <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <a
-                href="https://youtube.com/@ManiSandhuOfficial786"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/5 text-red-400 flex items-center justify-center"
+            <div className="flex items-center gap-2">
+              <Link
+                href="/admin"
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-3 py-1.5 rounded-lg bg-[#d4af37]/20 border border-[#d4af37]/40 text-[#fef3c7] text-xs font-mono font-bold flex items-center gap-1.5"
               >
-                <YoutubeIcon className="w-4 h-4" />
-              </a>
-              <a
-                href="https://wa.me/919872999854"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center"
+                <Lock className="w-3.5 h-3.5 text-[#d4af37]" />
+                <span>Admin</span>
+              </Link>
+              <Link
+                href="/music-panel"
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-3 py-1.5 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-200 text-xs font-mono font-bold flex items-center gap-1.5"
               >
-                <WhatsAppIcon className="w-4 h-4" />
-              </a>
+                <Music className="w-3.5 h-3.5 text-amber-400" />
+                <span>Music</span>
+              </Link>
             </div>
             <a
               href="tel:+919872999854"

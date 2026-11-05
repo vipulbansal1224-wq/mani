@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import Providers from "@/components/Providers";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -61,7 +62,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${jakarta.variable} ${playfair.variable} scroll-smooth dark`}>
       <body className="min-h-screen bg-[#0b0c10] text-[#e5e7eb] font-sans antialiased selection:bg-[#d4af37]/30 selection:text-[#fef3c7]">
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

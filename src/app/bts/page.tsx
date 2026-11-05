@@ -5,30 +5,34 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ImageLightbox from "@/components/ImageLightbox";
 import { BTS_ITEMS, GalleryItem } from "@/data/gallery-data";
+import { usePortfolio } from "@/context/PortfolioContext";
 import { Clapperboard, Sparkles, Video, Users } from "lucide-react";
 
 export default function BtsPage() {
+  const { btsItems } = usePortfolio();
+  const displayItems = btsItems && btsItems.length > 0 ? btsItems : BTS_ITEMS;
+
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
 
   const filterOptions = [
-    { id: "all", label: "All BTS Moments", count: BTS_ITEMS.length },
+    { id: "all", label: "All BTS Moments", count: displayItems.length },
     {
       id: "crew-sets",
       label: "Crew & Camera Sets",
-      count: BTS_ITEMS.filter((i) => i.subCategory === "crew-sets").length,
+      count: displayItems.filter((i) => i.subCategory === "crew-sets").length,
     },
     {
       id: "vanity-makeup",
       label: "Vanity & Styling",
-      count: BTS_ITEMS.filter((i) => i.subCategory === "vanity-makeup").length,
+      count: displayItems.filter((i) => i.subCategory === "vanity-makeup").length,
     },
   ];
 
   const filteredItems =
     activeFilter === "all"
-      ? BTS_ITEMS
-      : BTS_ITEMS.filter((i) => i.subCategory === activeFilter);
+      ? displayItems
+      : displayItems.filter((i) => i.subCategory === activeFilter);
 
   return (
     <main className="min-h-screen bg-[#07080c] text-[#e5e7eb] flex flex-col relative selection:bg-[#d4af37]/40 selection:text-white">
