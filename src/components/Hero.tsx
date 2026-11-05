@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { YoutubeIcon, InstagramIcon, WhatsAppIcon } from "@/components/Icons";
 import { usePortfolio } from "@/context/PortfolioContext";
+import { PORTFOLIO_ITEMS } from "@/data/gallery-data";
 import {
   ArrowDown,
   Music,
@@ -17,6 +18,7 @@ import {
   VolumeX,
   Award,
   Crown,
+  Shuffle,
 } from "lucide-react";
 
 interface HeroProps {
@@ -24,7 +26,57 @@ interface HeroProps {
 }
 
 export default function Hero({ onOpenVideo }: HeroProps) {
-  const { profile, activeSiteTrack, currentPlayingTrack, isPlaying, togglePlayTrack } = usePortfolio();
+  const {
+    profile,
+    activeSiteTrack,
+    currentPlayingTrack,
+    isPlaying,
+    togglePlayTrack,
+    portfolioItems,
+  } = usePortfolio();
+
+  const portfolioList =
+    portfolioItems && portfolioItems.length > 0 ? portfolioItems : PORTFOLIO_ITEMS;
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isFading, setIsFading] = useState(false);
+
+  // Initialize with a random Mani Sandhu portfolio image on client mount
+  useEffect(() => {
+    if (portfolioList.length > 0) {
+      const randomStart = Math.floor(Math.random() * portfolioList.length);
+      setCurrentImageIndex(randomStart);
+    }
+  }, [portfolioList.length]);
+
+  // Gentle auto-rotation every 5 seconds between Mani Sandhu portfolio looks
+  useEffect(() => {
+    if (portfolioList.length <= 1) return;
+    const interval = setInterval(() => {
+      setIsFading(true);
+      setTimeout(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % portfolioList.length);
+        setIsFading(false);
+      }, 400);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [portfolioList.length]);
+
+  const handleShuffle = () => {
+    if (portfolioList.length <= 1) return;
+    setIsFading(true);
+    setTimeout(() => {
+      let nextIndex = Math.floor(Math.random() * portfolioList.length);
+      if (nextIndex === currentImageIndex) {
+        nextIndex = (currentImageIndex + 1) % portfolioList.length;
+      }
+      setCurrentImageIndex(nextIndex);
+      setIsFading(false);
+    }, 250);
+  };
+
+  const currentPortrait = portfolioList[currentImageIndex] || portfolioList[0];
 
   const isCurrentActivePlaying = isPlaying && currentPlayingTrack?.id === activeSiteTrack?.id;
 
@@ -197,7 +249,7 @@ export default function Hero({ onOpenVideo }: HeroProps) {
             </div>
           </div>
 
-          {/* Right Column: Yellow Blazer Signature Portrait */}
+          {/* Right Column: Dynamic Random Mani Sandhu Portfolio Showcase */}
           <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
             <div className="relative w-full max-w-md">
               {/* Backlight Glow */}
@@ -207,36 +259,48 @@ export default function Hero({ onOpenVideo }: HeroProps) {
               <div className="relative rounded-3xl overflow-hidden border border-[#d4af37]/30 bg-[#12141c] shadow-2xl p-2.5">
                 <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-black group">
                   <img
-                    src="/images/portfolio/m2_064_portfolio_studio-fashion.jpeg"
-                    alt="Mani Sandhu in mustard bespoke blazer"
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                    src={currentPortrait.src}
+                    alt={currentPortrait.title || "Mani Sandhu Portfolio"}
+                    className={`w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-700 ${
+                      isFading ? "opacity-0 scale-95" : "opacity-100 scale-100"
+                    }`}
                   />
 
                   {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
 
                   {/* Top Badge */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[10px] font-mono tracking-widest text-[#d4af37] uppercase font-bold flex items-center gap-1.5">
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[10px] font-mono tracking-widest text-[#d4af37] uppercase font-bold flex items-center gap-1.5 shadow-lg">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse"></span>
-                    <span>Editorial Portrait &bull; 2026</span>
+                    <span>Editorial Portrait &bull; {currentPortrait.subCategory ? currentPortrait.subCategory.replace(/-/g, " ") : "2026"}</span>
                   </div>
 
-                  {/* Floating Music Badge */}
-                  <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/80 backdrop-blur-md border border-white/15 flex items-center justify-center text-[#d4af37]">
-                    <Music className="w-5 h-5 animate-pulse" />
+                  {/* Interactive Shuffle Button */}
+                  <button
+                    onClick={handleShuffle}
+                    className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/80 backdrop-blur-md border border-white/15 hover:border-[#d4af37] flex items-center justify-center text-[#d4af37] hover:scale-110 active:rotate-180 transition-all shadow-lg cursor-pointer"
+                    title="Click to see another random Mani Sandhu photo"
+                    aria-label="Shuffle Portfolio Photo"
+                  >
+                    <Shuffle className="w-4 h-4" />
+                  </button>
+
+                  {/* Look Counter Pill */}
+                  <div className="absolute bottom-20 right-4 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-[10px] font-mono text-gray-300">
+                    <span className="text-[#d4af37] font-bold">#{currentImageIndex + 1}</span> / {portfolioList.length} Looks
                   </div>
 
                   {/* Bottom Stage Details Banner */}
                   <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-black/80 backdrop-blur-md border border-white/15 flex items-center justify-between">
-                    <div>
-                      <div className="text-white font-serif font-black text-lg">
-                        Mani Sandhu
+                    <div className="min-w-0 pr-2">
+                      <div className="text-white font-serif font-black text-lg truncate">
+                        {profile.name}
                       </div>
-                      <div className="text-[11px] text-gray-300 font-medium">
-                        Singer &bull; Media House Ludhiana
+                      <div className="text-[11px] text-gray-300 font-medium truncate">
+                        {currentPortrait.title || "Solo Fashion & UK Tour Series"}
                       </div>
                     </div>
-                    <div className="text-right">
+                    <div className="text-right shrink-0">
                       <div className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider">
                         Available
                       </div>
@@ -252,10 +316,10 @@ export default function Hero({ onOpenVideo }: HeroProps) {
               <div className="mt-3 px-4 py-3 rounded-xl bg-[#12141c] border border-white/10 flex items-center justify-between text-xs text-gray-300">
                 <span className="flex items-center gap-2 font-medium">
                   <MapPin className="w-3.5 h-3.5 text-[#d4af37]" />
-                  Ludhiana, Punjab &bull; London, UK
+                  {profile.location}
                 </span>
                 <span className="font-mono text-[#d4af37] font-semibold">
-                  +91 98729 99854
+                  {profile.phones?.[0] ? `+91 ${profile.phones[0]}` : "+91 98729 99854"}
                 </span>
               </div>
             </div>
