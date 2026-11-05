@@ -52,15 +52,9 @@ export default function Navbar() {
             </div>
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <span className="font-serif text-base lg:text-lg tracking-wider text-white font-extrabold group-hover:text-[#d4af37] transition-colors">
-                MANI SANDHU
-              </span>
-              <span className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-[#d4af37]/15 border border-[#d4af37]/30 text-[9px] font-mono font-bold text-[#fef3c7] uppercase tracking-wider">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse"></span>
-                OFFICIAL
-              </span>
-            </div>
+            <span className="font-serif text-base lg:text-lg tracking-wider text-white font-extrabold group-hover:text-[#d4af37] transition-colors block">
+              MANI SANDHU
+            </span>
             <span className="block text-[9px] tracking-widest uppercase text-gray-400 font-medium">
               Media House • Ludhiana &bull; UK
             </span>
