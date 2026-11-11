@@ -26,8 +26,8 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <div className="mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-[11px] uppercase tracking-[0.25em] font-bold text-red-400 mb-3">
-            <span>06 / Connect &amp; Official Bookings</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/30 text-[11px] uppercase font-mono tracking-widest text-[#fef3c7] mb-3">
+            <span>[ 08 • CONNECT &amp; OFFICIAL BOOKINGS ]</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-serif font-black text-white tracking-tight">
             Get In Touch with <span className="text-punjabi-fire">Mani Sandhu</span>
@@ -52,22 +52,22 @@ export default function ContactSection() {
                   <a
                     key={idx}
                     href={`tel:${phone}`}
-                    className="flex items-center justify-between p-4 rounded-2xl bg-[#0f121d] border border-white/10 hover:border-[#ff2a5f]/50 transition-all group stage-card"
+                    className="flex items-center justify-between p-4 rounded-2xl bg-[#0f121d] border border-white/10 hover:border-[#d4af37]/50 transition-all group stage-card"
                   >
                     <div className="flex items-center gap-3.5">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#ff2a5f]/20 to-[#f59e0b]/20 text-[#f59e0b] flex items-center justify-center">
-                        <Phone className="w-4 h-4 text-[#ff2a5f]" />
+                      <div className="w-10 h-10 rounded-full bg-[#d4af37]/15 border border-[#d4af37]/30 text-[#d4af37] flex items-center justify-center">
+                        <Phone className="w-4 h-4 text-[#d4af37]" />
                       </div>
                       <div>
                         <div className="text-[10px] text-gray-400 uppercase tracking-wider font-bold">
                           Direct Line {idx + 1}
                         </div>
-                        <div className="text-sm font-mono font-bold text-white group-hover:text-[#ff2a5f] transition-colors">
+                        <div className="text-sm font-mono font-bold text-white group-hover:text-[#d4af37] transition-colors">
                           +91 {phone}
                         </div>
                       </div>
                     </div>
-                    <ArrowUpRight className="w-4 h-4 text-gray-500 group-hover:text-[#ff2a5f] transition-colors group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRight className="w-4 h-4 text-gray-500 group-hover:text-[#d4af37] transition-colors group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                 ))}
               </div>
@@ -87,11 +87,11 @@ export default function ContactSection() {
             {/* Location & Email Info */}
             <div className="p-5 rounded-2xl bg-[#0f121d] border border-white/10 space-y-2 text-xs text-gray-300 stage-card">
               <div className="flex items-center gap-2 text-gray-200">
-                <MapPin className="w-4 h-4 text-[#ff2a5f]" />
+                <MapPin className="w-4 h-4 text-[#d4af37]" />
                 <span className="font-medium">Ludhiana, Punjab, India</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#f59e0b]" />
+                <Mail className="w-4 h-4 text-[#d4af37]" />
                 <span className="font-mono">{profile.officialEmail}</span>
               </div>
             </div>
@@ -106,15 +106,15 @@ export default function ContactSection() {
               </p>
 
               {submitted ? (
-                <div className="p-8 rounded-2xl bg-gradient-to-tr from-[#ff2a5f]/10 to-[#f59e0b]/10 border border-[#ff2a5f]/30 text-center animate-in fade-in">
-                  <CheckCircle2 className="w-12 h-12 text-[#f59e0b] mx-auto mb-3" />
+                <div className="p-8 rounded-2xl bg-gradient-to-tr from-[#d4af37]/15 to-transparent border border-[#d4af37]/30 text-center animate-in fade-in">
+                  <CheckCircle2 className="w-12 h-12 text-[#d4af37] mx-auto mb-3" />
                   <h5 className="text-xl font-serif font-bold text-white mb-1">Message Received!</h5>
                   <p className="text-xs text-gray-300 max-w-sm mx-auto mb-4">
                     Thank you. Mani Sandhu will get in touch with you directly for promotions &amp; shows.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="text-xs text-[#ff2a5f] font-bold underline cursor-pointer"
+                    className="text-xs text-[#d4af37] font-bold underline cursor-pointer hover:text-[#fef3c7]"
                   >
                     Send another inquiry
                   </button>
@@ -132,7 +132,7 @@ export default function ContactSection() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Jaspreet / Artist"
-                        className="w-full px-4 py-3.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#ff2a5f] focus:ring-1 focus:ring-[#ff2a5f]/40 transition-colors"
+                        className="w-full px-4 py-3.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37]/40 transition-colors"
                       />
                     </div>
 
@@ -146,7 +146,7 @@ export default function ContactSection() {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+91 98765 43210"
-                        className="w-full px-4 py-3.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#ff2a5f] focus:ring-1 focus:ring-[#ff2a5f]/40 transition-colors"
+                        className="w-full px-4 py-3.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37]/40 transition-colors"
                       />
                     </div>
                   </div>
@@ -158,7 +158,7 @@ export default function ContactSection() {
                     <select
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-[#141620] border border-white/10 text-white text-sm focus:outline-none focus:border-[#ff2a5f] transition-colors"
+                      className="w-full px-4 py-3.5 rounded-xl bg-[#141620] border border-white/10 text-white text-sm focus:outline-none focus:border-[#d4af37] transition-colors"
                     >
                       <option value="Media Promotion & Interview">Media Promotion &amp; Interview</option>
                       <option value="Song Collaboration">Song Collaboration / Singing</option>
@@ -178,13 +178,13 @@ export default function ContactSection() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Share your song name, promotional details, or collaboration idea..."
-                      className="w-full px-4 py-3.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#ff2a5f] focus:ring-1 focus:ring-[#ff2a5f]/40 transition-colors"
+                      className="w-full px-4 py-3.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37]/40 transition-colors"
                     ></textarea>
                   </div>
 
                   <button
                     type="submit"
-                    className="btn-fire w-full py-4 rounded-full font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+                    className="w-full py-4 rounded-full bg-gradient-to-r from-[#d4af37] to-[#b38f2a] text-black font-extrabold text-xs uppercase tracking-wider hover:shadow-xl hover:shadow-[#d4af37]/25 transition-all flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.01]"
                   >
                     <Send className="w-4 h-4" />
                     <span>Send Message to Mani Sandhu</span>

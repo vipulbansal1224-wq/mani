@@ -82,7 +82,8 @@ export default function AdminPage() {
   const [editingFileDataUrl, setEditingFileDataUrl] = useState<string | null>(null);
 
   // Profile Form State
-  const [profileForm, setProfileForm] = useState(profile);
+  const [profileFormOverride, setProfileForm] = useState<typeof profile | null>(null);
+  const profileForm = profileFormOverride ?? profile;
   const [profileSaved, setProfileSaved] = useState(false);
 
   // Handle Login
@@ -238,6 +239,7 @@ export default function AdminPage() {
   const handleProfileSave = (e: React.FormEvent) => {
     e.preventDefault();
     updateProfile(profileForm);
+    setProfileForm(null);
     setProfileSaved(true);
     setTimeout(() => setProfileSaved(false), 3000);
   };
@@ -1080,7 +1082,24 @@ export default function AdminPage() {
 
               <div>
                 <label className="block text-xs font-mono uppercase text-gray-300 tracking-wider mb-2">
-                  WhatsApp Contact Link
+                  Spotify Featured Track URL
+                </label>
+                <input
+                  type="text"
+                  value={profileForm.socials?.spotify || ""}
+                  onChange={(e) =>
+                    setProfileForm({
+                      ...profileForm,
+                      socials: { ...profileForm.socials, spotify: e.target.value },
+                    })
+                  }
+                  className="w-full px-4 py-3 bg-black/60 border border-white/15 rounded-xl text-sm text-white focus:outline-none focus:border-[#d4af37]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-mono uppercase text-gray-300 tracking-wider mb-2">
+                  WhatsApp Contact Number (with country code)
                 </label>
                 <input
                   type="text"
@@ -1112,7 +1131,7 @@ export default function AdminPage() {
                 onClick={() => {
                   if (confirm("Reset text back to original default?")) {
                     resetProfileToDefault();
-                    setProfileForm(profile);
+                    setProfileForm(null);
                   }
                 }}
                 className="text-xs text-gray-400 hover:text-white flex items-center gap-1.5"

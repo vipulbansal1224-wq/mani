@@ -13,8 +13,8 @@ export default function ServicesList() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-[11px] uppercase tracking-[0.25em] font-bold text-red-400 mb-3">
-              <span>04 / Capabilities &amp; Media Services</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/30 text-[11px] uppercase font-mono tracking-widest text-[#fef3c7] mb-3">
+              <span>[ 06 • CAPABILITIES &amp; MEDIA SERVICES ]</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif font-black text-white tracking-tight">
               Mani Sandhu <span className="text-punjabi-fire">Media House</span>
@@ -30,19 +30,19 @@ export default function ServicesList() {
           {services.map((srv, idx) => (
             <div
               key={idx}
-              className="py-10 group transition-all duration-300 hover:bg-gradient-to-r hover:from-white/[0.04] hover:to-transparent px-4 sm:px-6 rounded-2xl"
+              className="py-10 group transition-all duration-300 hover:bg-gradient-to-r hover:from-[#d4af37]/[0.05] hover:to-transparent px-4 sm:px-6 rounded-2xl"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 {/* Number */}
                 <div className="lg:col-span-2">
-                  <span className="font-mono text-lg tracking-widest text-punjabi-fire font-black">
+                  <span className="font-mono text-lg tracking-widest text-[#d4af37] font-black">
                     {String(idx + 1).padStart(2, "0")} /
                   </span>
                 </div>
 
                 {/* Title & Description */}
                 <div className="lg:col-span-5">
-                  <h3 className="text-xl sm:text-2xl font-serif font-black text-white group-hover:text-[#ff2a5f] transition-colors mb-2.5">
+                  <h3 className="text-xl sm:text-2xl font-serif font-black text-white group-hover:text-[#d4af37] transition-colors mb-2.5">
                     {srv.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-gray-300 leading-relaxed max-w-md">
@@ -55,7 +55,7 @@ export default function ServicesList() {
                   {srv.deliverables.map((item, dIdx) => (
                     <span
                       key={dIdx}
-                      className="px-3.5 py-1.5 rounded-full text-xs bg-white/5 group-hover:bg-[#ff2a5f]/15 group-hover:border-[#ff2a5f]/30 text-gray-200 border border-white/10 transition-colors"
+                      className="px-3.5 py-1.5 rounded-full text-xs bg-white/5 group-hover:bg-[#d4af37]/15 group-hover:border-[#d4af37]/30 text-gray-200 group-hover:text-[#fef3c7] border border-white/10 transition-colors"
                     >
                       {item}
                     </span>
@@ -66,7 +66,7 @@ export default function ServicesList() {
                 <div className="lg:col-span-1 flex justify-end">
                   <a
                     href="#contact"
-                    className="w-11 h-11 rounded-full border border-white/15 text-gray-300 group-hover:text-white group-hover:bg-gradient-to-tr group-hover:from-[#ff2a5f] group-hover:to-[#f59e0b] group-hover:border-transparent flex items-center justify-center transition-all shadow-md group-hover:shadow-red-500/30"
+                    className="w-11 h-11 rounded-full border border-white/15 text-gray-300 group-hover:text-black group-hover:bg-gradient-to-tr group-hover:from-[#d4af37] group-hover:to-[#b38f2a] group-hover:border-transparent flex items-center justify-center transition-all shadow-md group-hover:shadow-[#d4af37]/25"
                     aria-label={`Book ${srv.title}`}
                   >
                     <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
@@ -80,18 +80,18 @@ export default function ServicesList() {
         {/* Quick Booking Strip */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between p-6 sm:p-8 rounded-3xl bg-[#0f121d] border border-white/10 stage-card shadow-2xl gap-6">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#ff2a5f] to-[#f59e0b] text-white flex items-center justify-center font-black text-base shadow-lg shadow-red-500/30">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#d4af37] to-[#b38f2a] text-black flex items-center justify-center font-black text-base shadow-lg shadow-[#d4af37]/25">
               MS
             </div>
             <div>
               <div className="text-base font-bold text-white">Call Direct for Media Promotions:</div>
-              <div className="text-xs text-gray-300 mt-0.5">Lines: <span className="font-mono text-white font-bold">+91 98729 99854</span> &bull; <span className="font-mono text-white font-bold">+91 94788 39486</span> (Ludhiana)</div>
+              <div className="text-xs text-gray-300 mt-0.5">Lines: <span className="font-mono text-[#d4af37] font-bold">+91 98729 99854</span> &bull; <span className="font-mono text-[#d4af37] font-bold">+91 94788 39486</span> (Ludhiana)</div>
             </div>
           </div>
 
           <a
             href="tel:9872999854"
-            className="btn-fire px-8 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all font-bold"
+            className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-gradient-to-r from-[#d4af37] to-[#b38f2a] text-black text-xs uppercase tracking-wider transition-all font-bold hover:shadow-xl hover:shadow-[#d4af37]/25 hover:scale-105"
           >
             Call Desk Now
           </a>

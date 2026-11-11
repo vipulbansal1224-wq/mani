@@ -16,18 +16,21 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://youtube.com/@ManiSandhuOfficial786"),
-  title: "Mani Sandhu | Singer • Creator • Mani Sandhu Media House",
+  metadataBase: new URL("https://www.manisandhu.online"),
+  title: "Mani Sandhu | Singer • Producer • Mani Sandhu Media House",
   description:
-    "Official portfolio of Mani Sandhu. Singer of 'Broken Heart', Vlogger, Model, Actor, and Host at Mani Sandhu Media House, Ludhiana. YouTube: @ManiSandhuOfficial786.",
+    "Official portfolio of Mani Sandhu. Singer of 'Mirza' (Surinder Shinda Tribute) & 'Shiv Shiv Shambhu', Producer at Mani Sandhu Records & Media House, Ludhiana.",
   keywords: [
     "Mani Sandhu",
+    "Mani Sandhu Records",
     "ManiSandhuOfficial786",
     "Mani Sandhu Media House",
-    "Broken Heart Mani Sandhu",
+    "Mirza Mani Sandhu",
+    "Guddiyan Patole Kaur Billo",
+    "Ki Dam Da Bharosa Yaar",
+    "Shiv Shiv Shambhu Mani Sandhu",
     "Punjabi Singer",
     "Ludhiana Vlogger",
-    "Punjabi Comedy Skits",
     "Media Promotions Ludhiana"
   ],
   authors: [{ name: "Mani Sandhu" }],
@@ -35,11 +38,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://youtube.com/@ManiSandhuOfficial786",
-    title: "Mani Sandhu | Official Artist Portfolio",
+    url: "https://www.manisandhu.online",
+    title: "Mani Sandhu | Artist Portfolio & Mani Sandhu Records",
     description:
-      "Explore songs like 'Broken Heart', YouTube videos, comedy skits, and media promotions from Mani Sandhu Media House.",
-    siteName: "Mani Sandhu Official",
+      "Stream 'Mirza', 'Guddiyan Patole', 'Ki Dam Da Bharosa Yaar', 'Shiv Shiv Shambhu', and explore exclusive galleries from Mani Sandhu Media House.",
+    siteName: "Mani Sandhu",
     images: [
       {
         url: "/mani-sandhu-profile.jpg",

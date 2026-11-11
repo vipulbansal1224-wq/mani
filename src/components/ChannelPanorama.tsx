@@ -14,8 +14,8 @@ export default function ChannelPanorama() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-[11px] uppercase tracking-[0.25em] font-bold text-red-400 mb-3">
-              <span>05 / Channel &amp; Media Presence</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/30 text-[11px] uppercase font-mono tracking-widest text-[#fef3c7] mb-3">
+              <span>[ 07 • OFFICIAL CHANNEL &amp; MEDIA PRESENCE ]</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif font-black text-white tracking-tight">
               YouTube Channel <span className="text-punjabi-fire">Cover &amp; Hub</span>
@@ -49,7 +49,7 @@ export default function ChannelPanorama() {
           <div className="p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 bg-[#0d0f17] border-t border-white/10">
             <div className="flex items-center gap-4">
               <div className="relative">
-                <div className="absolute -inset-0.5 rounded-full bg-gradient-to-tr from-[#ff2a5f] to-[#f59e0b] blur-xs"></div>
+                <div className="absolute -inset-0.5 rounded-full bg-gradient-to-tr from-[#d4af37] to-[#f59e0b] blur-xs"></div>
                 <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-black p-0.5 shrink-0 bg-black">
                   <img
                     src={profile.profileImage}
@@ -59,20 +59,32 @@ export default function ChannelPanorama() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-serif font-bold text-white">Mani Sandhu Media House</h3>
-                <p className="text-xs text-gray-300">@ManiSandhuOfficial786 &bull; YouTube Creator &bull; Ludhiana (PB)</p>
+                <h3 className="text-xl font-serif font-bold text-white">Mani Sandhu Media House &amp; Records</h3>
+                <p className="text-xs text-gray-300">@manisandhurecords &bull; @ManiSandhuOfficial786 &bull; Ludhiana (PB)</p>
               </div>
             </div>
 
-            <a
-              href={profile.socials.youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-red-600/30 hover:scale-105 active:scale-95"
-            >
-              <YoutubeIcon className="w-4 h-4" />
-              <span>Subscribe on YouTube</span>
-            </a>
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href={profile.socials.youtubeRecords || "https://www.youtube.com/@manisandhurecords"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#d4af37] hover:bg-[#b38f2a] text-black font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-[#d4af37]/20 hover:scale-105 active:scale-95"
+              >
+                <YoutubeIcon className="w-4 h-4" />
+                <span>@manisandhurecords</span>
+              </a>
+
+              <a
+                href={profile.socials.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-red-600/30 hover:scale-105 active:scale-95"
+              >
+                <YoutubeIcon className="w-4 h-4" />
+                <span>Media House YT</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

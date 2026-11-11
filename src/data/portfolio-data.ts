@@ -45,12 +45,12 @@ export const PORTFOLIO_DATA = {
     punjabiName: "ਮਨੀ ਸੰਧੂ",
     tagline: "Singer • Producer • Model • Director • Founder of Mani Sandhu Media House",
     bioShort:
-      "Punjabi singer, producer, model, and director based in Ludhiana and UK. Singer of 'Broken Heart', 'Mirza' (Surinder Shinda Tribute), 'Nakhrey Da Mull', and 'Payi Chall Dhakk'. Collaborator with Late Ustad Surinder Shinda Ji and Singer Kaur Billo.",
+      "Punjabi singer, producer, model, and director based in Ludhiana and UK. Singer of 'Mirza' (Ustad Surinder Shinda Ji Tribute), 'Shiv Shiv Shambhu', 'Nakhrey Da Mull', and 'Payi Chall Dhakk'. Producer at Mani Sandhu Records with Singer Kaur Billo ('Ki Dam Da Bharosa Yaar', 'Guddiyan Patole').",
     bioLong: [
       "Mani Sandhu is a multifaceted Punjabi singer, producer, model, and the creative force behind Mani Sandhu Media House and Mani Sandhu Records, operating between Ludhiana, Punjab and the United Kingdom.",
-      "Blessed with direct mentorship and creative brotherhood with Punjabi folk giants, he recorded in studio sessions and promoted masterworks alongside the late legendary Ustad Surinder Shinda Ji ('Guddi Ishqe Di', 'Mirza' tribute) and revered vocalist Singer Kaur Billo ('Rusiya Kyu Ponahariyah', 'Maa Jota Wali').",
-      "As a singer and performer, his discography features hit singles including 'Broken Heart', 'Payi Chall Dhakk' (with Satta Singh), 'Nakhrey Da Mull' (Mehak Punjab Di 2024 UK Special), and 'Sanam Bewafa' ft. model Simran Pathan.",
-      "Through Mani Sandhu Media House and his YouTube channel (@ManiSandhuOfficial786), he produces high-concept music videos, comedy skits, and conducts premier media promotions for top industry artists."
+      "Blessed with direct mentorship and creative brotherhood with Punjabi folk giants, he recorded in studio sessions and produced masterworks alongside the late legendary Ustad Surinder Shinda Ji ('Guddi Ishqe Di', 'Mirza' tribute) and revered vocalist Singer Kaur Billo ('Ki Dam Da Bharosa Yaar', 'Guddiyan Patole', 'Rusiya Kyu Ponahariyah').",
+      "As a singer and producer, his catalogue features hit releases including 'Mirza' (Tribute to Ustad Surinder Shinda Ji on Spotify & YouTube), 'Shiv Shiv Shambhu', 'Guddiyan Patole', 'Ki Dam Da Bharosa Yaar', 'Payi Chall Dhakk', 'Nakhrey Da Mull', and 'Sanam Bewafa'.",
+      "Through Mani Sandhu Media House and his YouTube channels (@ManiSandhuOfficial786 & @manisandhurecords), he produces high-concept music videos, comedy skits, and conducts premier media promotions for top industry artists."
     ],
     location: "Ludhiana, Punjab, India • UK",
     profileImage: "/images/portfolio/m2_064_portfolio_studio-fashion.jpeg",
@@ -60,40 +60,47 @@ export const PORTFOLIO_DATA = {
     whatsapp: "919872999854",
     socials: {
       youtube: "https://www.youtube.com/@ManiSandhuOfficial786",
+      youtubeRecords: "https://www.youtube.com/@manisandhurecords",
       instagram: "https://www.instagram.com/manisandhu_official?igsh=MW9oM3Foem02OTFhbQ==",
       twitter: "https://twitter.com/Manisandhu_",
-      spotify: "https://open.spotify.com/track/1YQCvArUgAu3rtTwkiyOtA?si=SwSD-UM4QYG9Hh0JYoUtpg",
-      jiosaavn: "https://www.saavn.com/s/song/punjabi/broken-heart/broken-heart/HDcuWQZpYwA",
-      wynk: "https://open.wynk.in/tQH04WxG7zb",
+      spotify: "https://open.spotify.com/track/191LuVev3fckmIVgAOr77l?si=VTh_fLOPSDe7EragP3Mbbg&utm_source=copy-link",
+      jiosaavn: "https://www.youtube.com/@manisandhurecords",
+      wynk: "https://open.wynk.in/HAr66OrnELb",
       whatsappUrl: "https://wa.me/919872999854?text=Hello%20Mani%20Sandhu,%20I%20want%20to%20connect%20for%20promotion%20/%20interview."
     },
     stats: [
-      { label: "YouTube Channel", value: "@ManiSandhuOfficial786" },
-      { label: "Channel Focus", value: "Media House" },
-      { label: "Official Song", value: "Broken Heart" },
-      { label: "Roles", value: "Singer & Creator" },
+      { label: "Record Label", value: "Mani Sandhu Records" },
+      { label: "Featured Song", value: "Mirza (Tribute)" },
+      { label: "YouTube Channel", value: "@manisandhurecords" },
+      { label: "Roles", value: "Singer & Producer" },
       { label: "Location", value: "Ludhiana, PB" }
     ]
   },
 
   musicRelease: {
-    title: "Broken Heart",
+    title: "Mirza",
+    subtitle: "Dedicated To Ustad Surinder Shinda Ji",
     artist: "Mani Sandhu",
-    description: "Official Punjabi single by Mani Sandhu, expressing deep emotional heartfelt melodies.",
+    youtubeUrl: "https://youtu.be/yccf8_b0K_c",
+    youtubeId: "yccf8_b0K_c",
+    spotifyUrl: "https://open.spotify.com/track/191LuVev3fckmIVgAOr77l?si=VTh_fLOPSDe7EragP3Mbbg&utm_source=copy-link",
+    wynkUrl: "https://open.wynk.in/HAr66OrnELb",
+    description:
+      "Official Punjabi release 'Mirza' by Mani Sandhu under Mani Sandhu Records — dedicated to the late legendary Shromani Gayak Ustad Surinder Shinda Ji. Music by Davinder Kainth, Producer Kaur Billo, Project by Honey Hardeep.",
     platforms: [
       {
         name: "Spotify",
-        url: "https://open.spotify.com/track/1YQCvArUgAu3rtTwkiyOtA?si=SwSD-UM4QYG9Hh0JYoUtpg",
+        url: "https://open.spotify.com/track/191LuVev3fckmIVgAOr77l?si=VTh_fLOPSDe7EragP3Mbbg&utm_source=copy-link",
         icon: "Music"
       },
       {
-        name: "JioSaavn",
-        url: "https://www.saavn.com/s/song/punjabi/broken-heart/broken-heart/HDcuWQZpYwA",
-        icon: "Radio"
+        name: "YouTube Video",
+        url: "https://youtu.be/yccf8_b0K_c",
+        icon: "Video"
       },
       {
         name: "Wynk Music",
-        url: "https://open.wynk.in/tQH04WxG7zb",
+        url: "https://open.wynk.in/HAr66OrnELb",
         icon: "Headphones"
       }
     ]
@@ -103,17 +110,17 @@ export const PORTFOLIO_DATA = {
     {
       id: "music-singing",
       title: "Music & Original Songs",
-      role: "Singer & Lyricist",
-      type: "Music Release",
+      role: "Singer & Producer",
+      type: "Mani Sandhu Records",
       description:
-        "Passionate about Punjabi music, Mani Sandhu released the single 'Broken Heart' which is available on Spotify, JioSaavn, and Wynk Music, with more independent releases in the pipeline.",
-      bannerUrl: "/mani-sandhu-banner.jpg",
+        "Releasing soulful Punjabi folk, devotional, and festive tracks under Mani Sandhu Records including 'Mirza' (Ustad Surinder Shinda Ji Tribute), 'Shiv Shiv Shambhu', 'Ki Dam Da Bharosa Yaar', and 'Guddiyan Patole'.",
+      bannerUrl: "https://i.ytimg.com/vi/yccf8_b0K_c/maxresdefault.jpg",
       highlights: [
-        "Track: 'Broken Heart' streaming on Spotify & JioSaavn",
-        "Deep romantic and emotional lyrical expressions",
-        "Collaborating with Punjabi music composers and sound producers"
+        "Featured Track: 'Mirza' streaming on Spotify & YouTube",
+        "Hit Releases: 'Guddiyan Patole', 'Ki Dam Da Bharosa Yaar', 'Shiv Shiv Shambhu'",
+        "Collaborating with Singer Kaur Billo & Music Director Davinder Kainth"
       ],
-      link: "https://open.spotify.com/track/1YQCvArUgAu3rtTwkiyOtA",
+      link: "https://open.spotify.com/track/191LuVev3fckmIVgAOr77l?si=VTh_fLOPSDe7EragP3Mbbg&utm_source=copy-link",
       linkText: "Listen on Spotify"
     },
     {
@@ -141,12 +148,12 @@ export const PORTFOLIO_DATA = {
         "Creating fun, situational Punjabi comedy sketches portraying relatable family interactions, wedding matchmakers, youth friendships, and everyday humor.",
       bannerUrl: "/mani-sandhu-banner.jpg",
       highlights: [
-        "Popular skits including 'Vichole Ne Khaade Chhitar'",
+        "Popular reels & skits including 'Calm Down With Punjabi People'",
         "Relatable Punjabi village & town humor",
         "Shorts and Reels on Instagram (@manisandhu_official)"
       ],
-      link: "https://www.youtube.com/@ManiSandhuOfficial786",
-      linkText: "Watch Comedy Skits"
+      link: "https://youtu.be/byEnQhiQWlI",
+      linkText: "Watch Comedy Reels"
     },
     {
       id: "vlogs-lifestyle",
@@ -157,11 +164,11 @@ export const PORTFOLIO_DATA = {
         "Sharing real-life moments, travel adventures, on-location video shoot diaries, and behind-the-scenes insights from Ludhiana, London, and creative sets.",
       bannerUrl: "/mani-sandhu-profile.jpg",
       highlights: [
-        "Lifestyle vlogs and travel journals",
+        "Lifestyle vlogs, Punjabi Wedding Vlogs & travel journals",
         "On-location shoot updates and creator collaborations",
         "Direct audience interaction and shoutouts"
       ],
-      link: "https://www.youtube.com/@ManiSandhuOfficial786",
+      link: "https://youtu.be/DPDs7Rso8_o",
       linkText: "Watch Vlogs"
     }
   ] as WorkCategoryItem[],
@@ -169,86 +176,86 @@ export const PORTFOLIO_DATA = {
   videos: [
     {
       id: "vid-1",
-      title: "Broken Heart - Official Punjabi Song by Mani Sandhu",
+      title: "Mirza | Dedicated To Ustad Surinder Shinda Ji | Mani Sandhu | 2024",
       category: "music",
-      categoryLabel: "Official Song",
-      youtubeUrl: "https://www.youtube.com/@ManiSandhuOfficial786",
-      youtubeId: "broken-heart",
-      thumbnail: "/mani-sandhu-banner.jpg",
-      duration: "03:40",
-      views: "Streaming",
+      categoryLabel: "Featured Song • Mirza",
+      youtubeUrl: "https://youtu.be/yccf8_b0K_c",
+      youtubeId: "yccf8_b0K_c",
+      thumbnail: "https://i.ytimg.com/vi/yccf8_b0K_c/maxresdefault.jpg",
+      duration: "02:45",
+      views: "102K+",
       description:
-        "Official emotional Punjabi single 'Broken Heart' by singer Mani Sandhu. Available on Spotify, JioSaavn & Wynk Music.",
+        "Mani Sandhu Records presents 'Mirza' — heartfelt tribute by Mani Sandhu to the late legendary Ustad Surinder Shinda Ji. Producer Kaur Billo, Music Davinder Kainth. Streaming on Spotify & YouTube.",
       featured: true
     },
     {
       id: "vid-2",
-      title: "Bhai Varinder Singh Nirman | Exclusive Talk & Interview Part-1 | Mani Sandhu",
-      category: "interview",
-      categoryLabel: "Artist Interview",
-      youtubeUrl: "https://www.youtube.com/@ManiSandhuOfficial786",
-      youtubeId: "nirman-talk",
-      thumbnail: "/mani-sandhu-profile.jpg",
-      duration: "24:18",
-      views: "Popular",
+      title: "Guddiyan Patole | Kaur Billo | New Year 2025 Song | Mani Sandhu Records",
+      category: "music",
+      categoryLabel: "New Year 2025 Song",
+      youtubeUrl: "https://youtu.be/vJXjt5Hynbg",
+      youtubeId: "vJXjt5Hynbg",
+      thumbnail: "https://i.ytimg.com/vi/vJXjt5Hynbg/maxresdefault.jpg",
+      duration: "03:45",
+      views: "103K+",
       description:
-        "Thoughtful and respectful discussion hosted by Mani Sandhu at his Ludhiana setup with Bhai Varinder Singh Nirman.",
+        "Mani Sandhu Records presents the upbeat New Year celebration single 'Guddiyan Patole' in the soulful voice of Kaur Billo. Music by Davinder Kainth, Directed by Honey Hardeep.",
       featured: true
     },
     {
       id: "vid-3",
-      title: "Vichole Ne Khaade Chhitar | Superhit Comedy Punjabi Skit | Mani Sandhu Media House",
-      category: "comedy",
-      categoryLabel: "Punjabi Comedy",
-      youtubeUrl: "https://www.youtube.com/@ManiSandhuOfficial786",
-      youtubeId: "vichole-skit",
-      thumbnail: "/mani-sandhu-banner.jpg",
-      duration: "08:14",
-      views: "Trending",
+      title: "Ki Dam Da Bharosa Yaar | Kaur Billo | Latest Punjabi Song 2024",
+      category: "music",
+      categoryLabel: "Punjabi Folk Song",
+      youtubeUrl: "https://youtu.be/jffklZKGg_U",
+      youtubeId: "jffklZKGg_U",
+      thumbnail: "https://i.ytimg.com/vi/jffklZKGg_U/maxresdefault.jpg",
+      duration: "03:44",
+      views: "118K+",
       description:
-        "Hilarious situational comedy sketch about a traditional Punjabi marriage matchmaker caught in unexpected family chaos.",
+        "Soulful Punjabi folk track 'Ki Dam Da Bharosa Yaar' by Kaur Billo under Mani Sandhu Records, starring Mani Sandhu, Simran Pathan & ensemble cast.",
       featured: true
     },
     {
       id: "vid-4",
-      title: "Mujhe Pata Mai Haar Gya Hu | Heart Touching Drama Short | Mani Sandhu",
-      category: "comedy",
-      categoryLabel: "Acting Short",
-      youtubeUrl: "https://www.youtube.com/@ManiSandhuOfficial786",
-      youtubeId: "haar-gya",
-      thumbnail: "/mani-sandhu-profile.jpg",
-      duration: "03:52",
-      views: "Viral",
+      title: "Shiv Shiv Shambhu | Mani Sandhu | New Shiv Bhajan 2024",
+      category: "music",
+      categoryLabel: "Devotional Bhajan",
+      youtubeUrl: "https://youtu.be/jrEQzNay_Ns",
+      youtubeId: "jrEQzNay_Ns",
+      thumbnail: "https://i.ytimg.com/vi/jrEQzNay_Ns/maxresdefault.jpg",
+      duration: "02:56",
+      views: "126K+",
       description:
-        "An emotional short acting performance expressing life's hurdles, resilience, and personal determination.",
-      featured: false
+        "Energetic devotional Shiva anthem 'Shiv Shiv Shambhu' sung by Mani Sandhu, produced by Kaur Billo under Mani Sandhu Records.",
+      featured: true
     },
     {
       id: "vid-5",
-      title: "London Travel & Lifestyle VLOG | Exploring UK with Mani Sandhu",
-      category: "vlog",
-      categoryLabel: "Travel Vlog",
-      youtubeUrl: "https://www.youtube.com/@ManiSandhuOfficial786",
-      youtubeId: "london-vlog",
-      thumbnail: "/mani-sandhu-banner.jpg",
-      duration: "14:20",
-      views: "Vlog",
+      title: "Calm Down With Punjabi People | Mani Sandhu Comedy Reel",
+      category: "comedy",
+      categoryLabel: "Comedy & Reel",
+      youtubeUrl: "https://youtu.be/byEnQhiQWlI",
+      youtubeId: "byEnQhiQWlI",
+      thumbnail: "https://i.ytimg.com/vi/byEnQhiQWlI/maxresdefault.jpg",
+      duration: "Reel",
+      views: "Trending",
       description:
-        "Mani Sandhu shares personal travel vlogs exploring iconic spots in London and connecting with viewers abroad.",
+        "Fun Punjabi cultural reel & situational comedy performance by Mani Sandhu Media House.",
       featured: false
     },
     {
       id: "vid-6",
-      title: "Media Promotions & Artist Spotlights at Mani Sandhu Media House Ludhiana",
-      category: "interview",
-      categoryLabel: "Media Promotion",
-      youtubeUrl: "https://www.youtube.com/@ManiSandhuOfficial786",
-      youtubeId: "promotion-spotlight",
-      thumbnail: "/mani-sandhu-profile.jpg",
-      duration: "12:30",
-      views: "Spotlight",
+      title: "Punjabi Family Wedding Vlog | Exploring Celebrations with Mani Sandhu",
+      category: "vlog",
+      categoryLabel: "Family & Travel Vlog",
+      youtubeUrl: "https://youtu.be/DPDs7Rso8_o",
+      youtubeId: "DPDs7Rso8_o",
+      thumbnail: "https://i.ytimg.com/vi/DPDs7Rso8_o/maxresdefault.jpg",
+      duration: "Vlog",
+      views: "Featured",
       description:
-        "Behind the scenes and promotional interviews supporting upcoming Punjabi singers and content creators.",
+        "Mani Sandhu shares lively Punjabi wedding festivities, behind-the-camera family moments, and audience connect.",
       featured: false
     }
   ] as VideoItem[],

@@ -42,7 +42,7 @@ export default function Navbar() {
         {/* Brand Name */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative">
-            <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-[#d4af37] via-[#f59e0b] to-[#ff2a5f] opacity-75 blur-xs group-hover:opacity-100 transition-opacity"></div>
+            <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-[#d4af37] via-[#f59e0b] to-[#b38f2a] opacity-75 blur-xs group-hover:opacity-100 transition-opacity"></div>
             <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-black bg-black">
               <img
                 src="/images/portfolio/m2_064_portfolio_studio-fashion.jpeg"

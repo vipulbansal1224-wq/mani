@@ -71,9 +71,27 @@ export default function LegendsPage() {
               <h3 className="font-serif text-xl font-bold text-white mb-2">
                 Ustad Surinder Shinda Ji (Late)
               </h3>
-              <p className="text-xs text-gray-300 leading-relaxed">
+              <p className="text-xs text-gray-300 leading-relaxed mb-3">
                 Featuring historic studio sessions, the official promotion of &quot;Guddi Ishqe Di&quot; (Jashan Recordz), the famous rooftop shoot, and the tribute cover track &quot;MIRZA&quot; launched in collaboration with Shinda Ji&apos;s son Maninder Shinda.
               </p>
+              <div className="flex flex-wrap gap-2">
+                <a
+                  href="https://youtu.be/yccf8_b0K_c"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-600/20 hover:bg-red-600 border border-red-500/40 text-red-200 hover:text-white text-[11px] font-semibold transition-colors"
+                >
+                  <span>Watch &quot;Mirza&quot; Tribute (YT)</span>
+                </a>
+                <a
+                  href="https://open.spotify.com/track/191LuVev3fckmIVgAOr77l?si=VTh_fLOPSDe7EragP3Mbbg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1db954]/20 hover:bg-[#1db954] border border-[#1db954]/40 text-emerald-200 hover:text-black text-[11px] font-semibold transition-colors"
+                >
+                  <span>Listen on Spotify</span>
+                </a>
+              </div>
             </div>
 
             <div className="p-6 rounded-2xl bg-gradient-to-br from-[#12141d] to-[#0a0c12] border border-white/10 relative overflow-hidden">
@@ -81,14 +99,32 @@ export default function LegendsPage() {
                 <Mic className="w-24 h-24 text-white" />
               </div>
               <span className="inline-block px-2.5 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider bg-white/10 text-gray-200 mb-2 font-bold">
-                Vocalist & Mentor
+                Vocalist &amp; Mentor
               </span>
               <h3 className="font-serif text-xl font-bold text-white mb-2">
                 Singer Kaur Billo
               </h3>
-              <p className="text-xs text-gray-300 leading-relaxed">
-                Documenting live stage duets, studio vocal sessions at condenser mics, joint releases like &quot;Rusiya Kyu Ponahariyah&quot;, devotional masterworks (&quot;Maa Jota Wali&quot;), and heartfelt family celebrations.
+              <p className="text-xs text-gray-300 leading-relaxed mb-3">
+                Documenting live stage duets, studio vocal sessions at condenser mics, latest hits &quot;Guddiyan Patole&quot; &amp; &quot;Ki Dam Da Bharosa Yaar&quot;, plus joint devotional releases like &quot;Rusiya Kyu Ponahariyah&quot;.
               </p>
+              <div className="flex flex-wrap gap-2">
+                <a
+                  href="https://youtu.be/vJXjt5Hynbg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-600/20 hover:bg-red-600 border border-red-500/40 text-red-200 hover:text-white text-[11px] font-semibold transition-colors"
+                >
+                  <span>Guddiyan Patole (YT)</span>
+                </a>
+                <a
+                  href="https://youtu.be/jffklZKGg_U"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#d4af37]/15 hover:bg-[#d4af37] border border-[#d4af37]/40 text-[#fef3c7] hover:text-black text-[11px] font-semibold transition-colors"
+                >
+                  <span>Ki Dam Da Bharosa Yaar (YT)</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

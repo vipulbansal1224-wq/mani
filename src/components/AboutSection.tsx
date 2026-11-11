@@ -15,9 +15,9 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/30 text-[11px] uppercase font-mono tracking-[0.25em] font-bold text-[#fef3c7] mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/30 text-[11px] uppercase font-mono tracking-widest text-[#fef3c7] mb-3">
             <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
-            <span>03 / Profile &amp; Folk Legacy</span>
+            <span>[ 03 • PROFILE &amp; FOLK LEGACY ]</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-serif font-black text-white tracking-tight">
             About <span className="text-[#d4af37] italic font-normal">Mani Sandhu</span>

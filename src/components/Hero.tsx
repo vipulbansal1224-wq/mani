@@ -155,24 +155,33 @@ export default function Hero({ onOpenVideo }: HeroProps) {
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     </div>
                     <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                      <span>&quot;{activeSiteTrack?.title || "Broken Heart"}&quot; &bull; {activeSiteTrack?.artist || "Mani Sandhu"}</span>
+                      <span>&quot;{activeSiteTrack?.title || "Mirza"}&quot; &bull; {activeSiteTrack?.artist || "Mani Sandhu"}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <a
-                    href="https://youtube.com/@ManiSandhuOfficial786"
+                    href={activeSiteTrack?.spotifyUrl || profile.socials.spotify}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3.5 py-1.5 rounded-full bg-red-600 hover:bg-red-500 text-white text-xs font-bold flex items-center gap-1 transition-transform hover:scale-105"
+                    className="px-3 py-1.5 rounded-full bg-[#1db954] hover:bg-[#1aa34a] text-black text-xs font-extrabold flex items-center gap-1 transition-transform hover:scale-105"
+                  >
+                    <Music className="w-3 h-3" />
+                    <span>Spotify</span>
+                  </a>
+                  <a
+                    href={activeSiteTrack?.youtubeUrl || "https://youtu.be/yccf8_b0K_c"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 rounded-full bg-red-600 hover:bg-red-500 text-white text-xs font-bold flex items-center gap-1 transition-transform hover:scale-105"
                   >
                     <YoutubeIcon className="w-3.5 h-3.5" />
                     <span>YouTube</span>
                   </a>
                   <Link
                     href="/music"
-                    className="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-gray-200 text-xs font-medium transition-colors"
+                    className="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-gray-200 text-xs font-medium transition-colors"
                   >
                     <span>All Songs</span>
                   </Link>

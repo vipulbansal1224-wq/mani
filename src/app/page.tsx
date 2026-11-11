@@ -46,7 +46,7 @@ export default function Home() {
           style={{ animationDelay: "3s" }}
         ></div>
         <div
-          className="absolute top-[60%] left-[-5%] w-[500px] h-[500px] rounded-full bg-[#ff2a5f]/6 blur-[130px] animate-stage-glow"
+          className="absolute top-[60%] left-[-5%] w-[500px] h-[500px] rounded-full bg-[#d4af37]/6 blur-[130px] animate-stage-glow"
           style={{ animationDelay: "1.5s" }}
         ></div>
       </div>
@@ -63,7 +63,7 @@ export default function Home() {
       {/* About The Artist (03) */}
       <AboutSection />
 
-      {/* Featured Music Release: "Broken Heart" (04) */}
+      {/* Featured Music Release: "Mirza" (04) */}
       <MusicSection />
 
       {/* Selected Works & Video Catalogue (05) */}

@@ -47,18 +47,29 @@ export default function Footer() {
             </div>
 
             <p className="text-xs text-gray-300 leading-relaxed max-w-sm">
-              Punjabi Singer (&quot;Broken Heart&quot;, &quot;Mirza&quot;, &quot;Nakhrey Da Mull&quot;, &quot;Payi Chall Dhakk&quot;), Producer, Actor, Model, and Director. Collaborated with legendary Ustad Surinder Shinda Ji and Singer Kaur Billo.
+              Punjabi Singer (&quot;Mirza&quot;, &quot;Shiv Shiv Shambhu&quot;, &quot;Nakhrey Da Mull&quot;, &quot;Payi Chall Dhakk&quot;), Producer at Mani Sandhu Records (&quot;Guddiyan Patole&quot;, &quot;Ki Dam Da Bharosa Yaar&quot;), Actor, Model, and Director. Collaborated with Ustad Surinder Shinda Ji and Singer Kaur Billo.
             </p>
 
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://youtube.com/@ManiSandhuOfficial786"
+                href="https://www.youtube.com/@manisandhurecords"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-white/5 hover:bg-red-600 hover:text-white flex items-center justify-center transition-all text-gray-300 shadow-md"
-                aria-label="YouTube Channel"
+                aria-label="Mani Sandhu Records YouTube"
+                title="Mani Sandhu Records YouTube"
               >
                 <YoutubeIcon className="w-4 h-4" />
+              </a>
+              <a
+                href="https://open.spotify.com/track/191LuVev3fckmIVgAOr77l?si=VTh_fLOPSDe7EragP3Mbbg&utm_source=copy-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/5 hover:bg-[#1db954] hover:text-black flex items-center justify-center transition-all text-gray-300 shadow-md"
+                aria-label="Spotify"
+                title="Listen to Mirza on Spotify"
+              >
+                <Music className="w-4 h-4" />
               </a>
               <a
                 href="https://wa.me/919872999854"
@@ -70,7 +81,7 @@ export default function Footer() {
                 <WhatsAppIcon className="w-4 h-4" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/manisandhu_official?igsh=MW9oM3Foem02OTFhbQ=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-white/5 hover:bg-gradient-to-tr hover:from-amber-500 hover:to-pink-600 hover:text-white flex items-center justify-center transition-all text-gray-300 shadow-md"

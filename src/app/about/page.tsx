@@ -104,7 +104,7 @@ export default function AboutPage() {
                 From Ludhiana Streets to London Stages
               </h3>
               <p>
-                Operating out of Ludhiana, the beating heart of Punjab&apos;s cultural and industrial creativity, Mani Sandhu carved his reputation through genuine artistry. With his breakout single <strong className="text-white">&quot;Broken Heart&quot;</strong>, he captured millions of listeners on YouTube and streaming platforms.
+                Operating out of Ludhiana, the beating heart of Punjab&apos;s cultural and industrial creativity, Mani Sandhu carved his reputation through genuine artistry. Through releases like <strong className="text-white">&quot;Mirza&quot;</strong> (Dedicated to Ustad Surinder Shinda Ji), <strong className="text-white">&quot;Shiv Shiv Shambhu&quot;</strong>, <strong className="text-white">&quot;Ki Dam Da Bharosa Yaar&quot;</strong>, and <strong className="text-white">&quot;Guddiyan Patole&quot;</strong>, he continues reaching audiences across YouTube and Spotify.
               </p>
               <p>
                 Recognizing the need for end-to-end creative control, he founded <strong className="text-white">Mani Sandhu Records</strong> and <strong className="text-white">Mani Sandhu Media House</strong>. Today, the banner oversees everything from recording studio vocal tracking, music video casting, and high-fashion model shoots to post-production and global digital distribution.

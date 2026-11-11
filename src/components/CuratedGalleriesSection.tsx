@@ -76,7 +76,7 @@ export default function CuratedGalleriesSection() {
       href: "/music",
       icon: Disc,
       description:
-        "Original posters for 'Broken Heart', 'Mirza' (Surinder Shinda Tribute), 'Guddi Ishqe Di', 'Nakhrey Da Mull', 'Payi Chall Dhakk', alongside vocal booth sessions.",
+        "Original posters & sessions for 'Mirza' (Surinder Shinda Tribute), 'Guddiyan Patole', 'Ki Dam Da Bharosa Yaar', 'Shiv Shiv Shambhu', 'Nakhrey Da Mull', and 'Payi Chall Dhakk'.",
       previews: [
         "/images/music/m2_007_legends_surinder-shinda.jpeg",
         "/images/music/m2_084_legends_surinder-shinda.jpeg",
